@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View2">
+      <property
+         name="activityId">SearchPG</property>
+      <property
+         name="page">/SearchPG.jspx</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>SearchPG&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">215.79883</property>
+      <property
+         name="x">229.5</property>
+   </View>
+</SDM>

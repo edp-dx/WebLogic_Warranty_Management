@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="MnjWarrantyManagementHeaderVOExSetParent"
+  Version="11.1.1.62.29"
+  Extends="model.view.MnjWarrantyManagementHeaderVO"
+  InheritPersonalization="true"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  ComponentClass="model.view.MnjWarrantyManagementHeaderVOExSetParentImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <SQLQuery>
+    <![CDATA[SELECT DISTINCT
+         MnjWarrantyManagementHeaderE1.HEADER_ID,
+         MnjWarrantyManagementHeaderE1.ORGANIZATION,
+         MnjWarrantyManagementHeaderE1.ORG_ID,
+         MnjWarrantyManagementHeaderE1.DEPARTMENT,
+         MnjWarrantyManagementHeaderE1.ITEM_NAME,
+         MnjWarrantyManagementHeaderE1.ITEM_CODE,
+         MnjWarrantyManagementHeaderE1.ITEM_DESCRIPTION,
+         MnjWarrantyManagementHeaderE1.QTY,
+         MnjWarrantyManagementHeaderE1.VERSION_NO,
+         MnjWarrantyManagementHeaderE1.VERSION_DATE,
+         MnjWarrantyManagementHeaderE1.RESP_ID,
+         MnjWarrantyManagementHeaderE1.USER_ID,
+         MnjWarrantyManagementHeaderE1.CREATION_DATE,
+         MnjWarrantyManagementHeaderE1.CREATED_BY,
+         MnjWarrantyManagementHeaderE1.LAST_UPDATE_DATE,
+         MnjWarrantyManagementHeaderE1.LAST_UPDATED_BY,
+         MnjWarrantyManagementHeaderE1.WARRANTY_START_DATE,
+         MnjWarrantyManagementHeaderE1.WARRANTY_END_DATE,
+         ROUND ( (MnjWarrantyManagementHeaderE1.WARRANTY_END_DATE - SYSDATE))
+            Remaining_Warranty_Days,
+         MnjWarrantyManagementHeaderE1.WARRANTY_CARD,
+         MnjWarrantyManagementHeaderE1.INVOICE,
+         MnjWarrantyManagementHeaderE1.PURCHASE_DATE,
+         MnjWarrantyManagementHeaderE1.PURCHASE_PRICE,
+         MnjWarrantyManagementHeaderE1.SUPPLIER_NAME,
+         MnjWarrantyManagementHeaderE1.TOTAL_AMOUNT,
+         MnjWarrantyManagementHeaderE1.BRAND_NAME,
+         MnjWarrantyManagementHeaderE1.WARRANTY_MONTHS,
+         MnjWarrantyManagementHeaderE1.PREFIX_ITEM,
+         MnjWarrantyManagementHeaderE1.FIXED_ASSET_TAG_ID,
+         MnjWarrantyManagementHeaderE1.GRN,
+         MnjWarrantyManagementHeaderE1.PR,
+         MnjWarrantyManagementHeaderE1.SPO,
+         MnjWarrantyManagementHeaderE1.ITEM_ID,
+         MnjWarrantyManagementHeaderE1.PRODUCT_SERIAL_NO,
+         MnjWarrantyManagementHeaderE1.PRODUCT_ID,
+         MnjWarrantyManagementHeaderE1.GRN_DATE,
+         MnjWarrantyManagementHeaderE1.WARRANTY_ID,
+         MnjWarrantyManagementHeaderE1.UNIT,
+         MnjWarrantyManagementHeaderE1.BILL_NO,
+         MnjWarrantyManagementHeaderE1.UOM,
+         MnjWarrantyManagementHeaderE1.BILL_DATE,
+         MnjWarrantyManagementHeaderE1.PRODUCT_USER,
+         MnjWarrantyManagementHeaderE1.WARRANTY_REMAINING_DAYS,
+         MnjWarrantyManagementHeaderE1.REPLACEMENT_DATE,
+         MnjWarrantyManagementHeaderE1.LOCATION,
+         MnjWarrantyManagementHeaderE1.VENDOR_ID,
+         MnjWarrantyManagementHeaderE1.PO_LINE_ID,
+         MnjWarrantyManagementHeaderE1.PO_HEADER_ID,
+         MnjWarrantyManagementHeaderE1.WARRANTY_TAG,
+         MnjWarrantyManagementHeaderE1.WARRANTY_TYPE,
+         MnjWarrantyManagementHeaderE1.WARRANTY_ITEM_SERIAL_NUMBER,
+         MnjWarrantyManagementHeaderE1.ITEM_CATEGORY,
+         MnjWarrantyManagementHeaderE1.ITEM_CATEGORY_ID,
+         MnjWarrantyManagementHeaderE1.ITEM_CATEGORY_SHORT,
+         MnjWarrantyManagementHeaderE1.ITEM_SUB_CATEGORY,
+         MnjWarrantyManagementHeaderE1.ITEM_SUB_CATEGORY_ID,
+         MnjWarrantyManagementHeaderE1.ITEM_SUB_CATEGORY_SHORT,
+         MnjWarrantyManagementHeaderE1.SUB_LOCATION,
+         MnjWarrantyManagementHeaderE1.PARENT_ITEM_HEADER_ID,
+         MnjWarrantyManagementHeaderE1.PARENT_ITEM_WARRANTY_TAG,
+         MnjWarrantyManagementHeaderE1.CHILD_EXISTS_FLAG,
+         (SELECT COUNT (*)
+            FROM (SELECT ROWNUM
+                    FROM MNJ_WARRANTY_MANAGEMENT_LINE Li
+                   WHERE     1 = 1
+                         AND MnjWarrantyManagementHeaderE1.header_id =
+                                Li.header_id
+                         AND MnjWarrantyManagementHeaderE1.CHILD_EXISTS_FLAG =
+                                'Yes'))
+            Line_Table_Row_Num,
+         MnjWarrantyManagementHeaderE1.REMARKS,
+         MnjWarrantyManagementHeaderE1.PRODUCT_USER_EMP_ID,
+         MnjWarrantyManagementHeaderE1.PRODUCT_USER_DEPT,
+         MnjWarrantyManagementHeaderE1.COST_CENTER,
+         MnjWarrantyManagementHeaderE1.COST_CENTER_NAME,
+         MnjWarrantyManagementHeaderE1.SCHEDULE_MAINTAIN_FLAG,
+         MnjWarrantyManagementHeaderE1.WARRANTY_START_DATE
+            Maintenance_Start_From,
+         MnjWarrantyManagementHeaderE1.MAINTAIN_PERIOD,
+         MnjWarrantyManagementHeaderE1.LAST_MAINTAIN_DATE,
+         MnjWarrantyManagementHeaderE1.NEXT_MAINTAIN_DATE,
+         ROUND ( (MnjWarrantyManagementHeaderE1.NEXT_MAINTAIN_DATE - SYSDATE))
+            Rem_Days_For_Next_Main
+    FROM MNJ_WARRANTY_MANAGEMENT_HEADER MnjWarrantyManagementHeaderE1,
+         MNJ_WARRANTY_MANAGEMENT_LINE L
+   WHERE MnjWarrantyManagementHeaderE1.header_id = L.header_id(+)
+   /**
+           Added P_Resp_Id by Sakibul Islam on 02.09.2020
+         **/
+   and (((:P_Resp_Id = '50821') and MnjWarrantyManagementHeaderE1.ORG_ID = 342) --50821 --> GFL 
+         or ((:P_Resp_Id = '50822') and MnjWarrantyManagementHeaderE1.ORG_ID = 344) --50822 --> GWL
+         or ((:P_Resp_Id = '20634') and MnjWarrantyManagementHeaderE1.ORG_ID in (340,341,342,343,344,526,527))) --20634-->Corporate Office
+and MnjWarrantyManagementHeaderE1.parent_item_warranty_tag is null
+ORDER BY MnjWarrantyManagementHeaderE1.HEADER_ID DESC]]>
+  </SQLQuery>
+  <ViewAttribute
+    Name="RemainingWarrantyDays"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="REMAINING_WARRANTY_DAYS"
+    Expression="REMAINING_WARRANTY_DAYS"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="22"/>
+      <Attr Name="_OverrideAttr" Value="true"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="LineTableRowNum"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="LINE_TABLE_ROW_NUM"
+    Expression="LINE_TABLE_ROW_NUM"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="39"/>
+      <Attr Name="_OverrideAttr" Value="true"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MaintenanceStartFrom"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Date"
+    ColumnType="DATE"
+    AliasName="MAINTENANCE_START_FROM"
+    Expression="MAINTENANCE_START_FROM"
+    SQLType="DATE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="7"/>
+      <Attr Name="_OverrideAttr" Value="true"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <FMT_FORMATTER
+          ResId="model.view.MnjWarrantyManagementHeaderVO.MaintenanceStartFrom_FMT_FORMATTER"/>
+        <FMT_FORMAT
+          ResId="model.view.MnjWarrantyManagementHeaderVO.MaintenanceStartFrom_FMT_FORMAT"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="RemDaysForNextMain"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="REM_DAYS_FOR_NEXT_MAIN"
+    Expression="REM_DAYS_FOR_NEXT_MAIN"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="39"/>
+      <Attr Name="_OverrideAttr" Value="true"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Serial"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_OverrideAttr" Value="true"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SelectBox"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_OverrideAttr" Value="true"/>
+    </DesignTime>
+  </ViewAttribute>
+</ViewObject>

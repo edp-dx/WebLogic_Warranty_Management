@@ -1,0 +1,1424 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.62.29" id="SearchPGPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="WarrantyGRNVO1" RangeSize="25"
+              DataControl="AppModuleDataControl" id="WarrantyGRNVO1Iterator"/>
+    <searchRegion Binds="WarrantyGRNVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="WarrantyGRNVO1Query"/>
+    <iterator Binds="MnjWarrantyManagementHeaderVO1" RangeSize="25"
+              DataControl="AppModuleDataControl"
+              id="MnjWarrantyManagementHeaderVO1Iterator"/>
+    <searchRegion Binds="MnjWarrantyManagementHeaderVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="MnjWarrantyManagementHeaderVO1Query"/>
+    <iterator Binds="MnjWarrantyDataLoaderVO1" RangeSize="25"
+              DataControl="AppModuleDataControl"
+              id="MnjWarrantyDataLoaderVO1Iterator"/>
+    <searchRegion Binds="MnjWarrantyDataLoaderVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="MnjWarrantyDataLoaderVO1Query"/>
+    <iterator Binds="MnjWarrantyManagementHeaderVOEx1" RangeSize="25"
+              DataControl="AppModuleDataControl"
+              id="MnjWarrantyManagementHeaderVOEx1Iterator"/>
+    <searchRegion Binds="MnjWarrantyManagementHeaderVOEx1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="MnjWarrantyManagementHeaderVOEx1Query"/>
+    <iterator Binds="MnjWarrantyManagementLineVO1" RangeSize="25"
+              DataControl="AppModuleDataControl"
+              id="MnjWarrantyManagementLineVO1Iterator"/>
+    <searchRegion Binds="MnjWarrantyManagementLineVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="MnjWarrantyManagementLineVO1Query"/>
+    <invokeAction id="setSessionValue" Binds="setSessionValues"
+                  Refresh="always"/>
+    <iterator Binds="MnjWarrantyManagementHeaderVOExSetParent1" RangeSize="25"
+              DataControl="AppModuleDataControl"
+              id="MnjWarrantyManagementHeaderVOExSetParent1Iterator"/>
+    <searchRegion Binds="MnjWarrantyManagementHeaderVOExSetParent1Iterator"
+                  Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="MnjWarrantyManagementHeaderVOExSetParent1Query"/>
+    <iterator Binds="MnjWarrantyManagementHeaderVOEx2_1" RangeSize="32750"
+              DataControl="AppModuleDataControl"
+              id="MnjWarrantyManagementHeaderVOEx2_1Iterator"/>
+    <searchRegion Binds="MnjWarrantyManagementHeaderVOEx2_1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="MnjWarrantyManagementHeaderVOEx2_1Query"/>
+    <iterator Binds="MnjWarrantyManagementLineVOEx1" RangeSize="32750"
+              DataControl="AppModuleDataControl"
+              id="MnjWarrantyManagementLineVOEx1Iterator"/>
+    <searchRegion Binds="MnjWarrantyManagementLineVOEx1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="MnjWarrantyManagementLineVOEx1Query"/>
+    <iterator Binds="WarrHeaderScheduleHistoryVO1" RangeSize="25"
+              DataControl="AppModuleDataControl"
+              id="WarrHeaderScheduleHistoryVO1Iterator"/>
+    <searchRegion Binds="WarrHeaderScheduleHistoryVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="WarrHeaderScheduleHistoryVO1Query"/>
+    <iterator Binds="WarrLineScheduleHistoryVO1" RangeSize="25"
+              DataControl="AppModuleDataControl"
+              id="WarrLineScheduleHistoryVO1Iterator"/>
+    <searchRegion Binds="WarrLineScheduleHistoryVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="WarrLineScheduleHistoryVO1Query"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="WarrantyGRNVO1Iterator" id="Ou">
+      <AttrNames>
+        <Item Value="Ou"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="WarrantyGRNVO1Iterator" id="OrganizationCode">
+      <AttrNames>
+        <Item Value="OrganizationCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="WarrantyGRNVO1Iterator" id="Supplier">
+      <AttrNames>
+        <Item Value="Supplier"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="WarrantyGRNVO1Iterator" id="PoNumber">
+      <AttrNames>
+        <Item Value="PoNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="WarrantyGRNVO1Iterator" id="ItemId">
+      <AttrNames>
+        <Item Value="ItemId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="WarrantyGRNVO1Iterator" id="GrnNumber">
+      <AttrNames>
+        <Item Value="GrnNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="WarrantyGRNVO1Iterator" id="GrnDate">
+      <AttrNames>
+        <Item Value="GrnDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="WarrantyGRNVO1Iterator" id="GrnQty">
+      <AttrNames>
+        <Item Value="GrnQty"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="WarrantyGRNVO1Iterator" id="GrnOum">
+      <AttrNames>
+        <Item Value="GrnOum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="WarrantyGRNVO1Iterator" id="ItemDescription">
+      <AttrNames>
+        <Item Value="ItemDescription"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+          id="MnjWarrantyManagementHeaderVO1">
+      <nodeDefinition DefName="model.view.MnjWarrantyManagementHeaderVO"
+                      Name="MnjWarrantyManagementHeaderVO10">
+        <AttrNames>
+          <Item Value="HeaderId"/>
+          <Item Value="Organization"/>
+          <Item Value="OrgId"/>
+          <Item Value="Department"/>
+          <Item Value="ItemName"/>
+          <Item Value="ItemCode"/>
+          <Item Value="ItemDescription"/>
+          <Item Value="Qty"/>
+          <Item Value="VersionNo"/>
+          <Item Value="VersionDate"/>
+          <Item Value="RespId"/>
+          <Item Value="UserId"/>
+          <Item Value="CreationDate"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="LastUpdateDate"/>
+          <Item Value="LastUpdatedBy"/>
+          <Item Value="WarrantyStartDate"/>
+          <Item Value="WarrantyEndDate"/>
+          <Item Value="WarrantyCard"/>
+          <Item Value="Invoice"/>
+          <Item Value="PurchaseDate"/>
+          <Item Value="PurchasePrice"/>
+          <Item Value="SupplierName"/>
+          <Item Value="TotalAmount"/>
+          <Item Value="BrandName"/>
+          <Item Value="WarrantyMonths"/>
+          <Item Value="PrefixItem"/>
+          <Item Value="FixedAssetTagId"/>
+          <Item Value="Grn"/>
+          <Item Value="Pr"/>
+          <Item Value="Spo"/>
+          <Item Value="ItemId"/>
+          <Item Value="ProductSerialNo"/>
+          <Item Value="ProductId"/>
+          <Item Value="GrnDate"/>
+          <Item Value="WarrantyId"/>
+          <Item Value="Unit"/>
+          <Item Value="BillNo"/>
+          <Item Value="Uom"/>
+          <Item Value="BillDate"/>
+          <Item Value="ProductUser"/>
+          <Item Value="WarrantyRemainingDays"/>
+          <Item Value="ReplacementDate"/>
+          <Item Value="Location"/>
+          <Item Value="PoHeaderId"/>
+          <Item Value="PoLineId"/>
+          <Item Value="WarrantyTag"/>
+          <Item Value="Serial"/>
+          <Item Value="WarrantyType"/>
+          <Item Value="SubLocation"/>
+          <Item Value="ParentItemWarrantyTag"/>
+          <Item Value="ChildExistsFlag"/>
+          <Item Value="LineTableRowNum"/>
+          <Item Value="Remarks"/>
+          <Item Value="ProductUserDept"/>
+          <Item Value="CostCenterName"/>
+          <Item Value="CostCenter"/>
+          <Item Value="ScheduleMaintainFlag"/>
+          <Item Value="MaintainPeriod"/>
+          <Item Value="NextMaintainDate"/>
+          <Item Value="RemDaysForNextMain"/>
+          <Item Value="MaintenanceStartFrom"/>
+          <Item Value="RemainingWarrantyDays"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+            id="CreateInsert" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <action IterBinding="MnjWarrantyManagementHeaderVO1Iterator" id="Delete"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="AppModuleDataControl"/>
+    <listOfValues StaticList="false" IterBinding="WarrantyGRNVO1Iterator"
+                  Uses="LOV_Location" id="Location"/>
+    <listOfValues StaticList="false" IterBinding="WarrantyGRNVO1Iterator"
+                  Uses="LOV_User_name" id="User_name"/>
+    <list IterBinding="WarrantyGRNVO1Iterator" StaticList="false"
+          Uses="LOV_WarrantyTypeLOV" id="WarrantyTypeLOV"
+          DTSupportsMRU="false"/>
+    <listOfValues StaticList="false" IterBinding="WarrantyGRNVO1Iterator"
+                  Uses="LOV_MajorCategoryLOV" id="MajorCategoryLOV"/>
+    <listOfValues StaticList="false" IterBinding="WarrantyGRNVO1Iterator"
+                  Uses="LOV_MinorCategoryDesc" id="MinorCategoryDesc"/>
+    <listOfValues StaticList="false" IterBinding="WarrantyGRNVO1Iterator"
+                  Uses="LOV_SubLocation" id="SubLocation"/>
+    <tree IterBinding="MnjWarrantyDataLoaderVO1Iterator"
+          id="MnjWarrantyDataLoaderVO1">
+      <nodeDefinition DefName="model.view.MnjWarrantyDataLoaderVO"
+                      Name="MnjWarrantyDataLoaderVO10">
+        <AttrNames>
+          <Item Value="HeaderId"/>
+          <Item Value="Organization"/>
+          <Item Value="OrgId"/>
+          <Item Value="Department"/>
+          <Item Value="ItemName"/>
+          <Item Value="ItemCode"/>
+          <Item Value="ItemDescription"/>
+          <Item Value="Qty"/>
+          <Item Value="VersionNo"/>
+          <Item Value="VersionDate"/>
+          <Item Value="RespId"/>
+          <Item Value="UserId"/>
+          <Item Value="CreationDate"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="LastUpdateDate"/>
+          <Item Value="LastUpdatedBy"/>
+          <Item Value="WarrantyStartDate"/>
+          <Item Value="WarrantyEndDate"/>
+          <Item Value="WarrantyCard"/>
+          <Item Value="Invoice"/>
+          <Item Value="PurchaseDate"/>
+          <Item Value="PurchasePrice"/>
+          <Item Value="SupplierName"/>
+          <Item Value="TotalAmount"/>
+          <Item Value="BrandName"/>
+          <Item Value="WarrantyMonths"/>
+          <Item Value="PrefixItem"/>
+          <Item Value="FixedAssetTagId"/>
+          <Item Value="Grn"/>
+          <Item Value="Pr"/>
+          <Item Value="Spo"/>
+          <Item Value="ItemId"/>
+          <Item Value="ProductSerialNo"/>
+          <Item Value="ProductId"/>
+          <Item Value="GrnDate"/>
+          <Item Value="WarrantyId"/>
+          <Item Value="Unit"/>
+          <Item Value="BillNo"/>
+          <Item Value="Uom"/>
+          <Item Value="BillDate"/>
+          <Item Value="ProductUser"/>
+          <Item Value="WarrantyRemainingDays"/>
+          <Item Value="ReplacementDate"/>
+          <Item Value="Location"/>
+          <Item Value="VendorId"/>
+          <Item Value="PoLineId"/>
+          <Item Value="WarrantyTag"/>
+          <Item Value="PoHeaderId"/>
+          <Item Value="WarrantyType"/>
+          <Item Value="WarrantyItemSerialNumber"/>
+          <Item Value="ItemCategory"/>
+          <Item Value="ItemCategoryShort"/>
+          <Item Value="ItemCategoryId"/>
+          <Item Value="ItemSubCategory"/>
+          <Item Value="ItemSubCategoryShort"/>
+          <Item Value="ItemSubCategoryId"/>
+          <Item Value="SubLocation"/>
+          <Item Value="RowID"/>
+          <Item Value="Serial"/>
+          <Item Value="Remarks"/>
+          <Item Value="ProductUserDept"/>
+          <Item Value="CostCenterName"/>
+          <Item Value="CostCenter"/>
+          <Item Value="MaintainPeriod"/>
+          <Item Value="NextMaintainDate"/>
+          <Item Value="LastMaintainDate"/>
+          <Item Value="ScheduleMaintainFlag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="MnjWarrantyDataLoaderVO1Iterator" id="CreateInsert1"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action IterBinding="MnjWarrantyDataLoaderVO1Iterator" id="Delete1"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <listOfValues StaticList="false" IterBinding="WarrantyGRNVO1Iterator"
+                  Uses="LOV_FixedAssetTag" id="FixedAssetTag"/>
+    <attributeValues IterBinding="WarrantyGRNVO1Iterator" id="PoLineId">
+      <AttrNames>
+        <Item Value="PoLineId"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+          id="MnjWarrantyManagementHeaderVO11">
+      <nodeDefinition DefName="model.view.MnjWarrantyManagementHeaderVO"
+                      Name="MnjWarrantyManagementHeaderVO110">
+        <AttrNames>
+          <Item Value="HeaderId"/>
+          <Item Value="Organization"/>
+          <Item Value="OrgId"/>
+          <Item Value="Department"/>
+          <Item Value="ItemName"/>
+          <Item Value="ItemCode"/>
+          <Item Value="ItemDescription"/>
+          <Item Value="Qty"/>
+          <Item Value="VersionNo"/>
+          <Item Value="VersionDate"/>
+          <Item Value="RespId"/>
+          <Item Value="UserId"/>
+          <Item Value="CreationDate"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="LastUpdateDate"/>
+          <Item Value="LastUpdatedBy"/>
+          <Item Value="WarrantyStartDate"/>
+          <Item Value="WarrantyEndDate"/>
+          <Item Value="WarrantyCard"/>
+          <Item Value="Invoice"/>
+          <Item Value="PurchaseDate"/>
+          <Item Value="PurchasePrice"/>
+          <Item Value="SupplierName"/>
+          <Item Value="TotalAmount"/>
+          <Item Value="BrandName"/>
+          <Item Value="WarrantyMonths"/>
+          <Item Value="PrefixItem"/>
+          <Item Value="FixedAssetTagId"/>
+          <Item Value="Grn"/>
+          <Item Value="Pr"/>
+          <Item Value="Spo"/>
+          <Item Value="ItemId"/>
+          <Item Value="ProductSerialNo"/>
+          <Item Value="ProductId"/>
+          <Item Value="GrnDate"/>
+          <Item Value="WarrantyId"/>
+          <Item Value="Unit"/>
+          <Item Value="BillNo"/>
+          <Item Value="Uom"/>
+          <Item Value="BillDate"/>
+          <Item Value="ProductUser"/>
+          <Item Value="WarrantyRemainingDays"/>
+          <Item Value="ReplacementDate"/>
+          <Item Value="Location"/>
+          <Item Value="VendorId"/>
+          <Item Value="PoLineId"/>
+          <Item Value="PoHeaderId"/>
+          <Item Value="WarrantyTag"/>
+          <Item Value="Serial"/>
+          <Item Value="WarrantyType"/>
+          <Item Value="WarrantyItemSerialNumber"/>
+          <Item Value="ItemCategory"/>
+          <Item Value="ItemCategoryId"/>
+          <Item Value="ItemCategoryShort"/>
+          <Item Value="ItemSubCategory"/>
+          <Item Value="ItemSubCategoryId"/>
+          <Item Value="ItemSubCategoryShort"/>
+          <Item Value="SubLocation"/>
+          <Item Value="SelectBox" Binds="SelectBox"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <button IterBinding="MnjWarrantyManagementHeaderVO1Iterator" id="SelectBox"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="SelectBox"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <tree IterBinding="MnjWarrantyManagementHeaderVOEx1Iterator"
+          id="MnjWarrantyManagementHeaderVOEx1">
+      <nodeDefinition DefName="model.view.MnjWarrantyManagementHeaderVOEx"
+                      Name="MnjWarrantyManagementHeaderVOEx10">
+        <AttrNames>
+          <Item Value="HeaderId"/>
+          <Item Value="Organization"/>
+          <Item Value="OrgId"/>
+          <Item Value="Department"/>
+          <Item Value="ItemName"/>
+          <Item Value="ItemCode"/>
+          <Item Value="ItemDescription"/>
+          <Item Value="Qty"/>
+          <Item Value="VersionNo"/>
+          <Item Value="VersionDate"/>
+          <Item Value="RespId"/>
+          <Item Value="UserId"/>
+          <Item Value="CreationDate"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="LastUpdateDate"/>
+          <Item Value="LastUpdatedBy"/>
+          <Item Value="WarrantyStartDate"/>
+          <Item Value="WarrantyEndDate"/>
+          <Item Value="WarrantyCard"/>
+          <Item Value="Invoice"/>
+          <Item Value="PurchaseDate"/>
+          <Item Value="PurchasePrice"/>
+          <Item Value="SupplierName"/>
+          <Item Value="TotalAmount"/>
+          <Item Value="BrandName"/>
+          <Item Value="WarrantyMonths"/>
+          <Item Value="PrefixItem"/>
+          <Item Value="FixedAssetTagId"/>
+          <Item Value="Grn"/>
+          <Item Value="Pr"/>
+          <Item Value="Spo"/>
+          <Item Value="ItemId"/>
+          <Item Value="ProductSerialNo"/>
+          <Item Value="ProductId"/>
+          <Item Value="GrnDate"/>
+          <Item Value="WarrantyId"/>
+          <Item Value="Unit"/>
+          <Item Value="BillNo"/>
+          <Item Value="Uom"/>
+          <Item Value="BillDate"/>
+          <Item Value="ProductUser"/>
+          <Item Value="WarrantyRemainingDays"/>
+          <Item Value="ReplacementDate"/>
+          <Item Value="Location"/>
+          <Item Value="VendorId"/>
+          <Item Value="PoLineId"/>
+          <Item Value="PoHeaderId"/>
+          <Item Value="WarrantyTag"/>
+          <Item Value="Serial"/>
+          <Item Value="WarrantyType"/>
+          <Item Value="WarrantyItemSerialNumber"/>
+          <Item Value="ItemCategory"/>
+          <Item Value="ItemCategoryId"/>
+          <Item Value="ItemCategoryShort"/>
+          <Item Value="ItemSubCategory"/>
+          <Item Value="ItemSubCategoryId"/>
+          <Item Value="ItemSubCategoryShort"/>
+          <Item Value="SubLocation"/>
+          <Item Value="SelectBox"/>
+          <Item Value="ParentItemHeaderId"/>
+          <Item Value="ParentItemWarrantyTag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="MnjWarrantyManagementLineVO1Iterator"
+          id="MnjWarrantyManagementLineVO1">
+      <nodeDefinition DefName="model.view.MnjWarrantyManagementLineVO"
+                      Name="MnjWarrantyManagementLineVO10">
+        <AttrNames>
+          <Item Value="LineId"/>
+          <Item Value="HeaderId"/>
+          <Item Value="Organization"/>
+          <Item Value="OrgId"/>
+          <Item Value="Department"/>
+          <Item Value="ItemName"/>
+          <Item Value="ItemCode"/>
+          <Item Value="ItemDescription"/>
+          <Item Value="Qty"/>
+          <Item Value="VersionNo"/>
+          <Item Value="VersionDate"/>
+          <Item Value="RespId"/>
+          <Item Value="UserId"/>
+          <Item Value="CreationDate"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="LastUpdateDate"/>
+          <Item Value="LastUpdatedBy"/>
+          <Item Value="WarrantyStartDate"/>
+          <Item Value="WarrantyEndDate"/>
+          <Item Value="WarrantyCard"/>
+          <Item Value="Invoice"/>
+          <Item Value="PurchaseDate"/>
+          <Item Value="PurchasePrice"/>
+          <Item Value="SupplierName"/>
+          <Item Value="TotalAmount"/>
+          <Item Value="BrandName"/>
+          <Item Value="WarrantyMonths"/>
+          <Item Value="PrefixItem"/>
+          <Item Value="FixedAssetTagId"/>
+          <Item Value="Grn"/>
+          <Item Value="Pr"/>
+          <Item Value="Spo"/>
+          <Item Value="ItemId"/>
+          <Item Value="ProductSerialNo"/>
+          <Item Value="ProductId"/>
+          <Item Value="GrnDate"/>
+          <Item Value="WarrantyId"/>
+          <Item Value="Unit"/>
+          <Item Value="BillNo"/>
+          <Item Value="Uom"/>
+          <Item Value="BillDate"/>
+          <Item Value="ProductUser"/>
+          <Item Value="WarrantyRemainingDays"/>
+          <Item Value="ReplacementDate"/>
+          <Item Value="Location"/>
+          <Item Value="VendorId"/>
+          <Item Value="PoLineId"/>
+          <Item Value="WarrantyTag"/>
+          <Item Value="PoHeaderId"/>
+          <Item Value="WarrantyType"/>
+          <Item Value="SubLocation"/>
+          <Item Value="Serial"/>
+          <Item Value="Remarks"/>
+          <Item Value="ProductUserDept"/>
+          <Item Value="CostCenterName"/>
+          <Item Value="CostCenter"/>
+          <Item Value="MaintainPeriod"/>
+          <Item Value="NextMaintainDate"/>
+          <Item Value="ScheduleMaintainFlag"/>
+          <Item Value="RemDaysForNextMain"/>
+          <Item Value="RemainingWarrantyDays"/>
+          <Item Value="MaintenanceStartFrom"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="setSessionValues"
+                  InstanceName="AppModuleDataControl.dataProvider"
+                  DataControl="AppModuleDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="setSessionValues"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="orgId" NDValue="#{viewScope.OrgId}"
+                 NDType="java.lang.String"/>
+      <NamedData NDName="userId" NDValue="#{viewScope.UserId}"
+                 NDType="java.lang.String"/>
+      <NamedData NDName="respId" NDValue="#{viewScope.RespId}"
+                 NDType="java.lang.String"/>
+      <NamedData NDName="respAppl" NDValue="#{viewScope.RespAppId}"
+                 NDType="java.lang.String"/>
+    </methodAction>
+    <listOfValues StaticList="false"
+                  IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                  Uses="LOV_ParentItemWarrantyTag" id="ParentItemWarrantyTag"/>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="HeaderId">
+      <AttrNames>
+        <Item Value="HeaderId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="Organization">
+      <AttrNames>
+        <Item Value="Organization"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="OrgId">
+      <AttrNames>
+        <Item Value="OrgId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="Department">
+      <AttrNames>
+        <Item Value="Department"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="ItemName">
+      <AttrNames>
+        <Item Value="ItemName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="ItemCode">
+      <AttrNames>
+        <Item Value="ItemCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="Qty">
+      <AttrNames>
+        <Item Value="Qty"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="VersionNo">
+      <AttrNames>
+        <Item Value="VersionNo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="VersionDate">
+      <AttrNames>
+        <Item Value="VersionDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="RespId">
+      <AttrNames>
+        <Item Value="RespId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="UserId">
+      <AttrNames>
+        <Item Value="UserId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="CreationDate">
+      <AttrNames>
+        <Item Value="CreationDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="CreatedBy">
+      <AttrNames>
+        <Item Value="CreatedBy"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="LastUpdateDate">
+      <AttrNames>
+        <Item Value="LastUpdateDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="LastUpdatedBy">
+      <AttrNames>
+        <Item Value="LastUpdatedBy"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="WarrantyStartDate">
+      <AttrNames>
+        <Item Value="WarrantyStartDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="WarrantyEndDate">
+      <AttrNames>
+        <Item Value="WarrantyEndDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="WarrantyCard">
+      <AttrNames>
+        <Item Value="WarrantyCard"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="Invoice">
+      <AttrNames>
+        <Item Value="Invoice"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="PurchaseDate">
+      <AttrNames>
+        <Item Value="PurchaseDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="PurchasePrice">
+      <AttrNames>
+        <Item Value="PurchasePrice"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="SupplierName">
+      <AttrNames>
+        <Item Value="SupplierName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="TotalAmount">
+      <AttrNames>
+        <Item Value="TotalAmount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="BrandName">
+      <AttrNames>
+        <Item Value="BrandName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="WarrantyMonths">
+      <AttrNames>
+        <Item Value="WarrantyMonths"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="PrefixItem">
+      <AttrNames>
+        <Item Value="PrefixItem"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues StaticList="false"
+                  IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                  Uses="LOV_FixedAssetTagId" id="FixedAssetTagId"/>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="Grn">
+      <AttrNames>
+        <Item Value="Grn"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="Pr">
+      <AttrNames>
+        <Item Value="Pr"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="Spo">
+      <AttrNames>
+        <Item Value="Spo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="ProductSerialNo">
+      <AttrNames>
+        <Item Value="ProductSerialNo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="ProductId">
+      <AttrNames>
+        <Item Value="ProductId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="WarrantyId">
+      <AttrNames>
+        <Item Value="WarrantyId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="Unit">
+      <AttrNames>
+        <Item Value="Unit"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="BillNo">
+      <AttrNames>
+        <Item Value="BillNo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="Uom">
+      <AttrNames>
+        <Item Value="Uom"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="BillDate">
+      <AttrNames>
+        <Item Value="BillDate"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues StaticList="false"
+                  IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                  Uses="LOV_ProductUser" id="ProductUser"/>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="WarrantyRemainingDays">
+      <AttrNames>
+        <Item Value="WarrantyRemainingDays"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="ReplacementDate">
+      <AttrNames>
+        <Item Value="ReplacementDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="WarrantyTag">
+      <AttrNames>
+        <Item Value="WarrantyTag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="ItemDescription1">
+      <AttrNames>
+        <Item Value="ItemDescription"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="ItemId1">
+      <AttrNames>
+        <Item Value="ItemId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="GrnDate1">
+      <AttrNames>
+        <Item Value="GrnDate"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues StaticList="false"
+                  IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                  Uses="LOV_Location" id="Location1"/>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="WarrantyType">
+      <AttrNames>
+        <Item Value="WarrantyType"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues StaticList="false"
+                  IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                  Uses="LOV_SubLocation" id="SubLocation1"/>
+    <attributeValues IterBinding="MnjWarrantyManagementLineVO1Iterator"
+                     id="Organization1">
+      <AttrNames>
+        <Item Value="Organization"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementLineVO1Iterator"
+                     id="OrgId1">
+      <AttrNames>
+        <Item Value="OrgId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementLineVO1Iterator"
+                     id="ItemDescription2">
+      <AttrNames>
+        <Item Value="ItemDescription"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementLineVO1Iterator"
+                     id="Qty1">
+      <AttrNames>
+        <Item Value="Qty"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementLineVO1Iterator"
+                     id="WarrantyEndDate1">
+      <AttrNames>
+        <Item Value="WarrantyEndDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementLineVO1Iterator"
+                     id="SupplierName1">
+      <AttrNames>
+        <Item Value="SupplierName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementLineVO1Iterator"
+                     id="WarrantyMonths1">
+      <AttrNames>
+        <Item Value="WarrantyMonths"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementLineVO1Iterator"
+                     id="FixedAssetTagId1">
+      <AttrNames>
+        <Item Value="FixedAssetTagId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementLineVO1Iterator"
+                     id="Grn1">
+      <AttrNames>
+        <Item Value="Grn"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementLineVO1Iterator"
+                     id="Spo1">
+      <AttrNames>
+        <Item Value="Spo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementLineVO1Iterator"
+                     id="ItemId2">
+      <AttrNames>
+        <Item Value="ItemId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementLineVO1Iterator"
+                     id="ProductSerialNo1">
+      <AttrNames>
+        <Item Value="ProductSerialNo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementLineVO1Iterator"
+                     id="GrnDate2">
+      <AttrNames>
+        <Item Value="GrnDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementLineVO1Iterator"
+                     id="Uom1">
+      <AttrNames>
+        <Item Value="Uom"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementLineVO1Iterator"
+                     id="ProductUser1">
+      <AttrNames>
+        <Item Value="ProductUser"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementLineVO1Iterator"
+                     id="WarrantyRemainingDays1">
+      <AttrNames>
+        <Item Value="WarrantyRemainingDays"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementLineVO1Iterator"
+                     id="ReplacementDate1">
+      <AttrNames>
+        <Item Value="ReplacementDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementLineVO1Iterator"
+                     id="Location2">
+      <AttrNames>
+        <Item Value="Location"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementLineVO1Iterator"
+                     id="WarrantyTag1">
+      <AttrNames>
+        <Item Value="WarrantyTag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementLineVO1Iterator"
+                     id="SubLocation2">
+      <AttrNames>
+        <Item Value="SubLocation"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementLineVO1Iterator"
+                     id="WarrantyType1">
+      <AttrNames>
+        <Item Value="WarrantyType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="ParentItemWarrantyTag1">
+      <AttrNames>
+        <Item Value="ParentItemWarrantyTag"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="MnjWarrantyManagementHeaderVOExSetParent1Iterator"
+          id="MnjWarrantyManagementHeaderVOExSetParent1">
+      <nodeDefinition DefName="model.view.MnjWarrantyManagementHeaderVOExSetParent"
+                      Name="MnjWarrantyManagementHeaderVOExSetParent10">
+        <AttrNames>
+          <Item Value="HeaderId"/>
+          <Item Value="Organization"/>
+          <Item Value="OrgId"/>
+          <Item Value="Department"/>
+          <Item Value="ItemName"/>
+          <Item Value="ItemCode"/>
+          <Item Value="ItemDescription"/>
+          <Item Value="Qty"/>
+          <Item Value="VersionNo"/>
+          <Item Value="VersionDate"/>
+          <Item Value="RespId"/>
+          <Item Value="UserId"/>
+          <Item Value="CreationDate"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="LastUpdateDate"/>
+          <Item Value="LastUpdatedBy"/>
+          <Item Value="WarrantyStartDate"/>
+          <Item Value="WarrantyEndDate"/>
+          <Item Value="WarrantyCard"/>
+          <Item Value="Invoice"/>
+          <Item Value="PurchaseDate"/>
+          <Item Value="PurchasePrice"/>
+          <Item Value="SupplierName"/>
+          <Item Value="TotalAmount"/>
+          <Item Value="BrandName"/>
+          <Item Value="WarrantyMonths"/>
+          <Item Value="PrefixItem"/>
+          <Item Value="FixedAssetTagId"/>
+          <Item Value="Grn"/>
+          <Item Value="Pr"/>
+          <Item Value="Spo"/>
+          <Item Value="ItemId"/>
+          <Item Value="ProductSerialNo"/>
+          <Item Value="ProductId"/>
+          <Item Value="GrnDate"/>
+          <Item Value="WarrantyId"/>
+          <Item Value="Unit"/>
+          <Item Value="BillNo"/>
+          <Item Value="Uom"/>
+          <Item Value="BillDate"/>
+          <Item Value="ProductUser"/>
+          <Item Value="WarrantyRemainingDays"/>
+          <Item Value="ReplacementDate"/>
+          <Item Value="Location"/>
+          <Item Value="VendorId"/>
+          <Item Value="PoLineId"/>
+          <Item Value="PoHeaderId"/>
+          <Item Value="WarrantyTag"/>
+          <Item Value="WarrantyType"/>
+          <Item Value="WarrantyItemSerialNumber"/>
+          <Item Value="ItemCategory"/>
+          <Item Value="ItemCategoryId"/>
+          <Item Value="ItemCategoryShort"/>
+          <Item Value="ItemSubCategory"/>
+          <Item Value="ItemSubCategoryId"/>
+          <Item Value="ItemSubCategoryShort"/>
+          <Item Value="SubLocation"/>
+          <Item Value="ParentItemHeaderId"/>
+          <Item Value="ParentItemWarrantyTag"/>
+          <Item Value="ChildExistsFlag"/>
+          <Item Value="LineTableRowNum"/>
+          <Item Value="Serial"/>
+          <Item Value="SelectBox"/>
+          <Item Value="Remarks"/>
+          <Item Value="ProductUserDept"/>
+          <Item Value="CostCenterName"/>
+          <Item Value="CostCenter"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="WarrantyGRNVO1Iterator" id="ParentTag">
+      <AttrNames>
+        <Item Value="ParentTag"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="MnjWarrantyManagementLineVO1Iterator" id="Delete2"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <tree IterBinding="MnjWarrantyManagementHeaderVOEx2_1Iterator"
+          id="MnjWarrantyManagementHeaderVOEx2_1">
+      <nodeDefinition DefName="model.view.MnjWarrantyManagementHeaderVOEx2"
+                      Name="MnjWarrantyManagementHeaderVOEx2_10">
+        <AttrNames>
+          <Item Value="HeaderId"/>
+          <Item Value="Organization"/>
+          <Item Value="OrgId"/>
+          <Item Value="Department"/>
+          <Item Value="ItemName"/>
+          <Item Value="ItemCode"/>
+          <Item Value="ItemDescription"/>
+          <Item Value="Qty"/>
+          <Item Value="VersionNo"/>
+          <Item Value="VersionDate"/>
+          <Item Value="RespId"/>
+          <Item Value="UserId"/>
+          <Item Value="CreationDate"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="LastUpdateDate"/>
+          <Item Value="LastUpdatedBy"/>
+          <Item Value="WarrantyStartDate"/>
+          <Item Value="WarrantyEndDate"/>
+          <Item Value="WarrantyCard"/>
+          <Item Value="Invoice"/>
+          <Item Value="PurchaseDate"/>
+          <Item Value="PurchasePrice"/>
+          <Item Value="SupplierName"/>
+          <Item Value="TotalAmount"/>
+          <Item Value="BrandName"/>
+          <Item Value="WarrantyMonths"/>
+          <Item Value="PrefixItem"/>
+          <Item Value="FixedAssetTagId"/>
+          <Item Value="Grn"/>
+          <Item Value="Pr"/>
+          <Item Value="Spo"/>
+          <Item Value="ItemId"/>
+          <Item Value="ProductSerialNo"/>
+          <Item Value="ProductId"/>
+          <Item Value="GrnDate"/>
+          <Item Value="WarrantyId"/>
+          <Item Value="Unit"/>
+          <Item Value="BillNo"/>
+          <Item Value="Uom"/>
+          <Item Value="BillDate"/>
+          <Item Value="ProductUser"/>
+          <Item Value="WarrantyRemainingDays"/>
+          <Item Value="ReplacementDate"/>
+          <Item Value="Location"/>
+          <Item Value="VendorId"/>
+          <Item Value="PoLineId"/>
+          <Item Value="PoHeaderId"/>
+          <Item Value="WarrantyTag"/>
+          <Item Value="WarrantyType"/>
+          <Item Value="WarrantyItemSerialNumber"/>
+          <Item Value="ItemCategory"/>
+          <Item Value="ItemCategoryId"/>
+          <Item Value="ItemCategoryShort"/>
+          <Item Value="ItemSubCategory"/>
+          <Item Value="ItemSubCategoryId"/>
+          <Item Value="ItemSubCategoryShort"/>
+          <Item Value="SubLocation"/>
+          <Item Value="ParentItemHeaderId"/>
+          <Item Value="ParentItemWarrantyTag"/>
+          <Item Value="ChildExistsFlag"/>
+          <Item Value="LineTableRowNum"/>
+          <Item Value="Serial"/>
+          <Item Value="SelectBox"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="MnjWarrantyManagementLineVOEx1Iterator"
+          id="MnjWarrantyManagementLineVOEx1">
+      <nodeDefinition DefName="model.view.MnjWarrantyManagementLineVOEx"
+                      Name="MnjWarrantyManagementLineVOEx10">
+        <AttrNames>
+          <Item Value="LineId"/>
+          <Item Value="HeaderId"/>
+          <Item Value="Organization"/>
+          <Item Value="OrgId"/>
+          <Item Value="Department"/>
+          <Item Value="ItemName"/>
+          <Item Value="ItemCode"/>
+          <Item Value="ItemDescription"/>
+          <Item Value="Qty"/>
+          <Item Value="VersionNo"/>
+          <Item Value="VersionDate"/>
+          <Item Value="RespId"/>
+          <Item Value="UserId"/>
+          <Item Value="CreationDate"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="LastUpdateDate"/>
+          <Item Value="LastUpdatedBy"/>
+          <Item Value="WarrantyStartDate"/>
+          <Item Value="WarrantyEndDate"/>
+          <Item Value="WarrantyCard"/>
+          <Item Value="Invoice"/>
+          <Item Value="PurchaseDate"/>
+          <Item Value="PurchasePrice"/>
+          <Item Value="SupplierName"/>
+          <Item Value="TotalAmount"/>
+          <Item Value="BrandName"/>
+          <Item Value="WarrantyMonths"/>
+          <Item Value="PrefixItem"/>
+          <Item Value="FixedAssetTagId"/>
+          <Item Value="Grn"/>
+          <Item Value="Pr"/>
+          <Item Value="Spo"/>
+          <Item Value="ItemId"/>
+          <Item Value="ProductSerialNo"/>
+          <Item Value="ProductId"/>
+          <Item Value="GrnDate"/>
+          <Item Value="WarrantyId"/>
+          <Item Value="Unit"/>
+          <Item Value="BillNo"/>
+          <Item Value="Uom"/>
+          <Item Value="BillDate"/>
+          <Item Value="ProductUser"/>
+          <Item Value="WarrantyRemainingDays"/>
+          <Item Value="ReplacementDate"/>
+          <Item Value="Location"/>
+          <Item Value="VendorId"/>
+          <Item Value="PoLineId"/>
+          <Item Value="WarrantyTag"/>
+          <Item Value="PoHeaderId"/>
+          <Item Value="ItemCategory"/>
+          <Item Value="ItemSubCategory"/>
+          <Item Value="ItemCategoryShort"/>
+          <Item Value="ItemCategoryId"/>
+          <Item Value="ItemSubCategoryId"/>
+          <Item Value="ItemSubCategoryShort"/>
+          <Item Value="SubLocation"/>
+          <Item Value="WarrantyType"/>
+          <Item Value="Serial"/>
+          <Item Value="WarrantyItemSerialNumber"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="WarrantyGRNVO1Iterator" id="WarrantyGRNVO11">
+      <nodeDefinition DefName="model.view.WarrantyGRNVO"
+                      Name="WarrantyGRNVO110">
+        <AttrNames>
+          <Item Value="Serial"/>
+          <Item Value="Ou"/>
+          <Item Value="OrganizationCode"/>
+          <Item Value="PoNumber"/>
+          <Item Value="Supplier"/>
+          <Item Value="ItemId"/>
+          <Item Value="ItemDescription"/>
+          <Item Value="GrnNumber"/>
+          <Item Value="GrnDate"/>
+          <Item Value="GrnQty"/>
+          <Item Value="GrnOum"/>
+          <Item Value="WarrantyPeriod"/>
+          <Item Value="WarrantyUom"/>
+          <Item Value="WarrantyPeriodInMonths"/>
+          <Item Value="ItemCode"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="WarrantyGRNVO1Iterator" id="WarrantyPeriod">
+      <AttrNames>
+        <Item Value="WarrantyPeriod"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="WarrantyGRNVO1Iterator" id="WarrantyUom">
+      <AttrNames>
+        <Item Value="WarrantyUom"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="WarrantyGRNVO1Iterator"
+                     id="WarrantyPeriodInMonths">
+      <AttrNames>
+        <Item Value="WarrantyPeriodInMonths"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementLineVO1Iterator"
+                     id="Remarks1">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementLineVO1Iterator"
+                     id="ProductUserDept">
+      <AttrNames>
+        <Item Value="ProductUserDept"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="ProductUserDept1">
+      <AttrNames>
+        <Item Value="ProductUserDept"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="MnjWarrantyManagementHeaderVOEx1Iterator"
+          id="MnjWarrantyManagementHeaderVOEx11">
+      <nodeDefinition DefName="model.view.MnjWarrantyManagementHeaderVOEx"
+                      Name="MnjWarrantyManagementHeaderVOEx110">
+        <AttrNames>
+          <Item Value="HeaderId"/>
+          <Item Value="OrgId"/>
+          <Item Value="Organization"/>
+          <Item Value="Grn"/>
+          <Item Value="WarrantyType"/>
+          <Item Value="WarrantyMonths"/>
+          <Item Value="WarrantyTag"/>
+          <Item Value="FixedAssetTagId"/>
+          <Item Value="ProductSerialNo"/>
+          <Item Value="Location"/>
+          <Item Value="SubLocation"/>
+          <Item Value="ProductUser"/>
+          <Item Value="ProductUserDept"/>
+          <Item Value="ReplacementDate"/>
+          <Item Value="Remarks"/>
+          <Item Value="Spo"/>
+          <Item Value="SupplierName"/>
+          <Item Value="ItemId"/>
+          <Item Value="ItemDescription"/>
+          <Item Value="GrnDate"/>
+          <Item Value="Qty"/>
+          <Item Value="Uom"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="MnjWarrantyManagementLineVO1Iterator"
+                     id="CostCenterName">
+      <AttrNames>
+        <Item Value="CostCenterName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementLineVO1Iterator"
+                     id="CostCenter">
+      <AttrNames>
+        <Item Value="CostCenter"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="CostCenterName1">
+      <AttrNames>
+        <Item Value="CostCenterName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="CostCenter1">
+      <AttrNames>
+        <Item Value="CostCenter"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="WarrantyGRNVO1Iterator" id="FlagScheduleMaintain"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="FlagScheduleMaintain"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <attributeValues IterBinding="WarrantyGRNVO1Iterator" id="SchedulePeriod">
+      <AttrNames>
+        <Item Value="SchedulePeriod"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="WarrantyGRNVO1Iterator" id="NextMaintainDate">
+      <AttrNames>
+        <Item Value="NextMaintainDate"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="WarrHeaderScheduleHistoryVO1Iterator"
+          id="WarrHeaderScheduleHistoryVO1">
+      <nodeDefinition DefName="model.view.WarrHeaderScheduleHistoryVO"
+                      Name="WarrHeaderScheduleHistoryVO10">
+        <AttrNames>
+          <Item Value="HeaderId"/>
+          <Item Value="Type"/>
+          <Item Value="UpdateTime"/>
+          <Item Value="CreationDate"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="CreatorName"/>
+          <Item Value="LastUpdateDate"/>
+          <Item Value="LastUpdatedBy"/>
+          <Item Value="LastUpdaterName"/>
+          <Item Value="WarrantyTag"/>
+          <Item Value="OldScheduleMaintainFlag"/>
+          <Item Value="NewScheduleMaintainFlag"/>
+          <Item Value="OldMaintainPeriod"/>
+          <Item Value="NewMaintainPeriod"/>
+          <Item Value="OldNextMaintainDate"/>
+          <Item Value="NewNextMaintainDate"/>
+          <Item Value="Serial"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="ScheduleMaintainFlag">
+      <AttrNames>
+        <Item Value="ScheduleMaintainFlag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="MaintainPeriod">
+      <AttrNames>
+        <Item Value="MaintainPeriod"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="NextMaintainDate1">
+      <AttrNames>
+        <Item Value="NextMaintainDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="RemDaysForNextMain">
+      <AttrNames>
+        <Item Value="RemDaysForNextMain"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementLineVO1Iterator"
+                     id="ScheduleMaintainFlag1">
+      <AttrNames>
+        <Item Value="ScheduleMaintainFlag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementLineVO1Iterator"
+                     id="MaintainPeriod1">
+      <AttrNames>
+        <Item Value="MaintainPeriod"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementLineVO1Iterator"
+                     id="NextMaintainDate2">
+      <AttrNames>
+        <Item Value="NextMaintainDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementLineVO1Iterator"
+                     id="RemDaysForNextMain1">
+      <AttrNames>
+        <Item Value="RemDaysForNextMain"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="WarrLineScheduleHistoryVO1Iterator"
+          id="WarrLineScheduleHistoryVO1">
+      <nodeDefinition DefName="model.view.WarrLineScheduleHistoryVO"
+                      Name="WarrLineScheduleHistoryVO10">
+        <AttrNames>
+          <Item Value="LineId"/>
+          <Item Value="Type"/>
+          <Item Value="UpdateTime"/>
+          <Item Value="CreationDate"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="CreatorName"/>
+          <Item Value="LastUpdateDate"/>
+          <Item Value="LastUpdatedBy"/>
+          <Item Value="LastUpdaterName"/>
+          <Item Value="WarrantyTag"/>
+          <Item Value="OldScheduleMaintainFlag"/>
+          <Item Value="NewScheduleMaintainFlag"/>
+          <Item Value="OldMaintainPeriod"/>
+          <Item Value="NewMaintainPeriod"/>
+          <Item Value="OldNextMaintainDate"/>
+          <Item Value="NewNextMaintainDate"/>
+          <Item Value="Serial"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="WarrantyGRNVO1Iterator" id="ItemCode1">
+      <AttrNames>
+        <Item Value="ItemCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="WarrantyGRNVO1Iterator"
+                     id="WarrantyStartDate1">
+      <AttrNames>
+        <Item Value="WarrantyStartDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="WarrantyGRNVO1Iterator"
+                     id="WarrantyExpiryDate">
+      <AttrNames>
+        <Item Value="WarrantyExpiryDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementHeaderVO1Iterator"
+                     id="RemainingWarrantyDays">
+      <AttrNames>
+        <Item Value="RemainingWarrantyDays"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementLineVO1Iterator"
+                     id="WarrantyStartDate2">
+      <AttrNames>
+        <Item Value="WarrantyStartDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjWarrantyManagementLineVO1Iterator"
+                     id="RemainingWarrantyDays1">
+      <AttrNames>
+        <Item Value="RemainingWarrantyDays"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

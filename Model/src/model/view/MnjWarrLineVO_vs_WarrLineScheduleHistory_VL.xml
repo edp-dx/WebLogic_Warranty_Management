@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="MnjWarrLineVO_vs_WarrLineScheduleHistory_VL"
+  Version="11.1.1.62.29"
+  InheritPersonalization="true">
+  <DesignTime>
+    <Attr Name="_isCodegen" Value="true"/>
+    <Attr Name="_diagramName"
+      Value="Mnj Warr Line V O Vs  Warr Line Schedule History  VL"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="model.view.MnjWarrLineVO_vs_WarrLineScheduleHistory_VL_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewLinkDefEnd
+    Name="MnjWarrantyManagementLineVO"
+    Cardinality="1"
+    Owner="model.view.MnjWarrantyManagementLineVO"
+    Source="true">
+    <DesignTime>
+      <Attr Name="_finderName" Value="MnjWarrantyManagementLineVO"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.view.MnjWarrantyManagementLineVO.LineId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="WarrLineScheduleHistoryVO"
+    Cardinality="-1"
+    Owner="model.view.WarrLineScheduleHistoryVO">
+    <DesignTime>
+      <Attr Name="_finderName" Value="WarrLineScheduleHistoryVO"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.view.WarrLineScheduleHistoryVO.LineId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</ViewLink>

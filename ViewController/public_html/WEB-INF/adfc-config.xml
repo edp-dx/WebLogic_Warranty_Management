@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <view id="SearchPG">
+    <page>/SearchPG.jspx</page>
+    <input-page-parameter>
+      <from-value>#{param.ParamOrgId}</from-value>
+      <to-value>#{viewScope.OrgId}</to-value>
+    </input-page-parameter>
+    <input-page-parameter>
+      <from-value>#{param.ParamUserId}</from-value>
+      <to-value>#{viewScope.UserId}</to-value>
+    </input-page-parameter>
+    <input-page-parameter>
+      <from-value>#{param.ParamRespId}</from-value>
+      <to-value>#{viewScope.RespId}</to-value>
+    </input-page-parameter>
+    <input-page-parameter>
+      <from-value>#{param.ParamRespAppId}</from-value>
+      <to-value>#{viewScope.RespAppId}</to-value>
+    </input-page-parameter>
+  </view>
+  <managed-bean id="__14">
+    <managed-bean-name id="__13">Main_Bean</managed-bean-name>
+    <managed-bean-class id="__11">Main.Main</managed-bean-class>
+    <managed-bean-scope id="__12">request</managed-bean-scope>
+  </managed-bean>
+</adfc-config>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE Association SYSTEM "jbo_03_01.dtd">
+<!---->
+<Association
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="MnjWarrantyManagementLiFkAssoc"
+  Version="11.1.1.62.29"
+  InheritPersonalization="true">
+  <DesignTime>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <AssociationEnd
+    Name="MnjWarrantyManagementHeaderEO"
+    Cardinality="1"
+    Source="true"
+    Owner="model.entity.MnjWarrantyManagementHeaderEO">
+    <DesignTime>
+      <Attr Name="_aggregation" Value="0"/>
+      <Attr Name="_finderName" Value="MnjWarrantyManagementHeaderEO"/>
+      <Attr Name="_foreignKey"
+        Value="model.entity.MnjWarrantyManagementHeaderEO.MnjWarrantyManagementHeaPk"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.entity.MnjWarrantyManagementHeaderEO.HeaderId"/>
+    </AttrArray>
+  </AssociationEnd>
+  <AssociationEnd
+    Name="MnjWarrantyManagementLineEO"
+    Cardinality="-1"
+    Owner="model.entity.MnjWarrantyManagementLineEO">
+    <DesignTime>
+      <Attr Name="_aggregation" Value="0"/>
+      <Attr Name="_finderName" Value="MnjWarrantyManagementLineEO"/>
+      <Attr Name="_foreignKey"
+        Value="model.entity.MnjWarrantyManagementLineEO.MnjWarrantyManagementLiFk"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.entity.MnjWarrantyManagementLineEO.HeaderId"/>
+    </AttrArray>
+  </AssociationEnd>
+</Association>
