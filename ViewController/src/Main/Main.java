@@ -2609,7 +2609,7 @@ public class Main {
                 ;
             }
             if ( month != null || month != "" || !month.equals("")){
-                //adding months from Warranty Start Date
+                //Adding Months From Warranty Start Date
                 SimpleDateFormat dateFormat = new SimpleDateFormat ("dd-MMM-yyyy");
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(dateFormat.parse(warrStartDateLine.getValue().toString()));
