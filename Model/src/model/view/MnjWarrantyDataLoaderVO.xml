@@ -6,81 +6,14 @@
   Name="MnjWarrantyDataLoaderVO"
   Version="11.1.1.62.29"
   InheritPersonalization="true"
-  SelectList="MnjWarrantyDataLoaderEO.HEADER_ID, 
-       MnjWarrantyDataLoaderEO.ORGANIZATION, 
-       MnjWarrantyDataLoaderEO.ORG_ID, 
-       MnjWarrantyDataLoaderEO.DEPARTMENT, 
-       MnjWarrantyDataLoaderEO.ITEM_NAME, 
-       MnjWarrantyDataLoaderEO.ITEM_CODE, 
-       MnjWarrantyDataLoaderEO.ITEM_DESCRIPTION, 
-       MnjWarrantyDataLoaderEO.QTY, 
-       MnjWarrantyDataLoaderEO.VERSION_NO, 
-       MnjWarrantyDataLoaderEO.VERSION_DATE, 
-       MnjWarrantyDataLoaderEO.RESP_ID, 
-       MnjWarrantyDataLoaderEO.USER_ID, 
-       MnjWarrantyDataLoaderEO.CREATION_DATE, 
-       MnjWarrantyDataLoaderEO.CREATED_BY, 
-       MnjWarrantyDataLoaderEO.LAST_UPDATE_DATE, 
-       MnjWarrantyDataLoaderEO.LAST_UPDATED_BY, 
-       MnjWarrantyDataLoaderEO.WARRANTY_START_DATE, 
-       MnjWarrantyDataLoaderEO.WARRANTY_END_DATE, 
-       MnjWarrantyDataLoaderEO.WARRANTY_CARD, 
-       MnjWarrantyDataLoaderEO.INVOICE, 
-       MnjWarrantyDataLoaderEO.PURCHASE_DATE, 
-       MnjWarrantyDataLoaderEO.PURCHASE_PRICE, 
-       MnjWarrantyDataLoaderEO.SUPPLIER_NAME, 
-       MnjWarrantyDataLoaderEO.TOTAL_AMOUNT, 
-       MnjWarrantyDataLoaderEO.BRAND_NAME, 
-       MnjWarrantyDataLoaderEO.WARRANTY_MONTHS, 
-       MnjWarrantyDataLoaderEO.PREFIX_ITEM, 
-       MnjWarrantyDataLoaderEO.FIXED_ASSET_TAG_ID, 
-       MnjWarrantyDataLoaderEO.GRN, 
-       MnjWarrantyDataLoaderEO.PR, 
-       MnjWarrantyDataLoaderEO.SPO, 
-       MnjWarrantyDataLoaderEO.ITEM_ID, 
-       MnjWarrantyDataLoaderEO.PRODUCT_SERIAL_NO, 
-       MnjWarrantyDataLoaderEO.PRODUCT_ID, 
-       MnjWarrantyDataLoaderEO.GRN_DATE, 
-       MnjWarrantyDataLoaderEO.WARRANTY_ID, 
-       MnjWarrantyDataLoaderEO.UNIT, 
-       MnjWarrantyDataLoaderEO.BILL_NO, 
-       MnjWarrantyDataLoaderEO.UOM, 
-       MnjWarrantyDataLoaderEO.BILL_DATE, 
-       MnjWarrantyDataLoaderEO.PRODUCT_USER, 
-       MnjWarrantyDataLoaderEO.WARRANTY_REMAINING_DAYS, 
-       MnjWarrantyDataLoaderEO.REPLACEMENT_DATE, 
-       MnjWarrantyDataLoaderEO.LOCATION, 
-       MnjWarrantyDataLoaderEO.VENDOR_ID, 
-       MnjWarrantyDataLoaderEO.PO_LINE_ID, 
-       MnjWarrantyDataLoaderEO.WARRANTY_TAG, 
-       MnjWarrantyDataLoaderEO.PO_HEADER_ID, 
-       MnjWarrantyDataLoaderEO.WARRANTY_TYPE, 
-       MnjWarrantyDataLoaderEO.WARRANTY_ITEM_SERIAL_NUMBER, 
-       MnjWarrantyDataLoaderEO.ITEM_CATEGORY, 
-       MnjWarrantyDataLoaderEO.ITEM_CATEGORY_SHORT, 
-       MnjWarrantyDataLoaderEO.ITEM_CATEGORY_ID, 
-       MnjWarrantyDataLoaderEO.ITEM_SUB_CATEGORY, 
-       MnjWarrantyDataLoaderEO.ITEM_SUB_CATEGORY_SHORT, 
-       MnjWarrantyDataLoaderEO.ITEM_SUB_CATEGORY_ID, 
-       MnjWarrantyDataLoaderEO.SUB_LOCATION, 
-       MnjWarrantyDataLoaderEO.ROWID, 
-       MnjWarrantyDataLoaderEO.REMARKS, 
-       MnjWarrantyDataLoaderEO.PRODUCT_USER_DEPT, 
-       MnjWarrantyDataLoaderEO.PRODUCT_USER_EMP_ID, 
-       MnjWarrantyDataLoaderEO.COST_CENTER, 
-       MnjWarrantyDataLoaderEO.COST_CENTER_NAME, 
-       MnjWarrantyDataLoaderEO.SCHEDULE_MAINTAIN_FLAG, 
-       MnjWarrantyDataLoaderEO.NEXT_MAINTAIN_DATE, 
-       MnjWarrantyDataLoaderEO.MAINTAIN_PERIOD, 
-       MnjWarrantyDataLoaderEO.LAST_MAINTAIN_DATE"
-  FromList="MNJ_WARRANTY_DATA_LOADER MnjWarrantyDataLoaderEO"
   BindingStyle="OracleName"
-  CustomQuery="false"
+  CustomQuery="true"
   PageIterMode="Full"
   UseGlueCode="false"
   ComponentClass="model.view.MnjWarrantyDataLoaderVOImpl">
   <DesignTime>
     <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
   </DesignTime>
   <ViewAccessor
     Name="LocationLOV1"
@@ -254,6 +187,77 @@
       Hint="showAndExecute"
       Name="CostCenterLOVCriteria"/>
   </ListBinding>
+  <SQLQuery>
+    <![CDATA[SELECT MnjWarrantyDataLoaderEO.HEADER_ID, 
+       MnjWarrantyDataLoaderEO.ORGANIZATION, 
+       MnjWarrantyDataLoaderEO.ORG_ID, 
+       MnjWarrantyDataLoaderEO.DEPARTMENT, 
+       MnjWarrantyDataLoaderEO.ITEM_NAME, 
+       MnjWarrantyDataLoaderEO.ITEM_CODE, 
+       MnjWarrantyDataLoaderEO.ITEM_DESCRIPTION, 
+       MnjWarrantyDataLoaderEO.QTY, 
+       MnjWarrantyDataLoaderEO.VERSION_NO, 
+       MnjWarrantyDataLoaderEO.VERSION_DATE, 
+       MnjWarrantyDataLoaderEO.RESP_ID, 
+       MnjWarrantyDataLoaderEO.USER_ID, 
+       MnjWarrantyDataLoaderEO.CREATION_DATE, 
+       MnjWarrantyDataLoaderEO.CREATED_BY, 
+       MnjWarrantyDataLoaderEO.LAST_UPDATE_DATE, 
+       MnjWarrantyDataLoaderEO.LAST_UPDATED_BY, 
+       MnjWarrantyDataLoaderEO.WARRANTY_START_DATE, 
+       MnjWarrantyDataLoaderEO.WARRANTY_END_DATE, 
+       MnjWarrantyDataLoaderEO.WARRANTY_CARD, 
+       MnjWarrantyDataLoaderEO.INVOICE, 
+       MnjWarrantyDataLoaderEO.PURCHASE_DATE, 
+       MnjWarrantyDataLoaderEO.PURCHASE_PRICE, 
+       MnjWarrantyDataLoaderEO.SUPPLIER_NAME, 
+       MnjWarrantyDataLoaderEO.TOTAL_AMOUNT, 
+       MnjWarrantyDataLoaderEO.BRAND_NAME, 
+       MnjWarrantyDataLoaderEO.WARRANTY_MONTHS, 
+       MnjWarrantyDataLoaderEO.PREFIX_ITEM, 
+       MnjWarrantyDataLoaderEO.FIXED_ASSET_TAG_ID, 
+       MnjWarrantyDataLoaderEO.GRN, 
+       MnjWarrantyDataLoaderEO.PR, 
+       MnjWarrantyDataLoaderEO.SPO, 
+       MnjWarrantyDataLoaderEO.ITEM_ID, 
+       MnjWarrantyDataLoaderEO.PRODUCT_SERIAL_NO, 
+       MnjWarrantyDataLoaderEO.PRODUCT_ID, 
+       MnjWarrantyDataLoaderEO.GRN_DATE, 
+       MnjWarrantyDataLoaderEO.WARRANTY_ID, 
+       MnjWarrantyDataLoaderEO.UNIT, 
+       MnjWarrantyDataLoaderEO.BILL_NO, 
+       MnjWarrantyDataLoaderEO.UOM, 
+       MnjWarrantyDataLoaderEO.BILL_DATE, 
+       MnjWarrantyDataLoaderEO.PRODUCT_USER, 
+       MnjWarrantyDataLoaderEO.WARRANTY_REMAINING_DAYS, 
+       MnjWarrantyDataLoaderEO.REPLACEMENT_DATE, 
+       MnjWarrantyDataLoaderEO.LOCATION, 
+       MnjWarrantyDataLoaderEO.VENDOR_ID, 
+       MnjWarrantyDataLoaderEO.PO_LINE_ID, 
+       MnjWarrantyDataLoaderEO.WARRANTY_TAG, 
+       MnjWarrantyDataLoaderEO.PO_HEADER_ID, 
+       MnjWarrantyDataLoaderEO.WARRANTY_TYPE, 
+       MnjWarrantyDataLoaderEO.WARRANTY_ITEM_SERIAL_NUMBER, 
+       MnjWarrantyDataLoaderEO.ITEM_CATEGORY, 
+       MnjWarrantyDataLoaderEO.ITEM_CATEGORY_SHORT, 
+       MnjWarrantyDataLoaderEO.ITEM_CATEGORY_ID, 
+       MnjWarrantyDataLoaderEO.ITEM_SUB_CATEGORY, 
+       MnjWarrantyDataLoaderEO.ITEM_SUB_CATEGORY_SHORT, 
+       MnjWarrantyDataLoaderEO.ITEM_SUB_CATEGORY_ID, 
+       MnjWarrantyDataLoaderEO.SUB_LOCATION, 
+       MnjWarrantyDataLoaderEO.ROWID, 
+       MnjWarrantyDataLoaderEO.REMARKS, 
+       MnjWarrantyDataLoaderEO.PRODUCT_USER_DEPT, 
+       MnjWarrantyDataLoaderEO.PRODUCT_USER_EMP_ID, 
+       MnjWarrantyDataLoaderEO.COST_CENTER, 
+       MnjWarrantyDataLoaderEO.COST_CENTER_NAME, 
+       MnjWarrantyDataLoaderEO.SCHEDULE_MAINTAIN_FLAG, 
+       MnjWarrantyDataLoaderEO.NEXT_MAINTAIN_DATE, 
+       MnjWarrantyDataLoaderEO.MAINTAIN_PERIOD, 
+       MnjWarrantyDataLoaderEO.LAST_MAINTAIN_DATE,
+       MnjWarrantyDataLoaderEO.Warranty_Tag_Year
+FROM MNJ_WARRANTY_DATA_LOADER MnjWarrantyDataLoaderEO]]>
+  </SQLQuery>
   <EntityUsage
     Name="MnjWarrantyDataLoaderEO"
     Entity="model.entity.MnjWarrantyDataLoaderEO"/>
@@ -657,15 +661,6 @@
     EntityUsage="MnjWarrantyDataLoaderEO"
     AliasName="ROWID"/>
   <ViewAttribute
-    Name="Serial"
-    IsSelected="false"
-    IsPersistent="false"
-    PrecisionRule="true"
-    Type="java.lang.String"
-    ColumnType="VARCHAR2"
-    AliasName="VIEW_ATTR"
-    SQLType="VARCHAR"/>
-  <ViewAttribute
     Name="Remarks"
     PrecisionRule="true"
     EntityAttrName="Remarks"
@@ -736,6 +731,21 @@
     EntityAttrName="LastMaintainDate"
     EntityUsage="MnjWarrantyDataLoaderEO"
     AliasName="LAST_MAINTAIN_DATE"/>
+  <ViewAttribute
+    Name="Serial"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="WarrantyTagYear"
+    PrecisionRule="true"
+    AliasName="WARRANTY_TAG_YEAR"
+    EntityAttrName="WarrantyTagYear"
+    EntityUsage="MnjWarrantyDataLoaderEO"/>
   <ResourceBundle>
     <PropertiesBundle
       PropertiesFile="model.ModelBundle"/>

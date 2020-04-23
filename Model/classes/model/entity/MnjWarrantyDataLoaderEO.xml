@@ -783,4 +783,16 @@
       <Attr Name="_DisplaySize" Value="100"/>
     </DesignTime>
   </Attribute>
+  <Attribute
+    Name="WarrantyTagYear"
+    Precision="10"
+    ColumnName="WARRANTY_TAG_YEAR"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="MNJ_WARRANTY_DATA_LOADER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+  </Attribute>
 </Entity>

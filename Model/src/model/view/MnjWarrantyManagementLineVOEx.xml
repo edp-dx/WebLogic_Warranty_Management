@@ -87,7 +87,8 @@
             Rem_Days_For_Next_Main,
          ROUND ( (MnjWarrantyManagementLineEO.WARRANTY_END_DATE - SYSDATE))
             Remaining_Warranty_Days,
-         MnjWarrantyManagementLineEO.WARRANTY_START_DATE Maintenance_Start_From
+         MnjWarrantyManagementLineEO.WARRANTY_START_DATE Maintenance_Start_From,
+         MnjWarrantyManagementLineEO.WARRANTY_TAG_YEAR
     FROM MNJ_WARRANTY_MANAGEMENT_LINE MnjWarrantyManagementLineEO
     where 1=1
      /**

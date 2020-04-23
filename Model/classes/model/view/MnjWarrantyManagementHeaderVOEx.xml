@@ -100,7 +100,8 @@
          MnjWarrantyManagementHeaderE1.LAST_MAINTAIN_DATE,
          MnjWarrantyManagementHeaderE1.NEXT_MAINTAIN_DATE,
          ROUND ( (MnjWarrantyManagementHeaderE1.NEXT_MAINTAIN_DATE - SYSDATE))
-            Rem_Days_For_Next_Main
+            Rem_Days_For_Next_Main,
+         MnjWarrantyManagementHeaderE1.WARRANTY_TAG_YEAR
     FROM MNJ_WARRANTY_MANAGEMENT_HEADER MnjWarrantyManagementHeaderE1,
          MNJ_WARRANTY_MANAGEMENT_LINE L
    WHERE MnjWarrantyManagementHeaderE1.header_id  = L.header_id (+)

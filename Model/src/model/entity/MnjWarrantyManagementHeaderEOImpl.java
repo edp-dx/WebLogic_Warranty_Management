@@ -787,6 +787,17 @@ public class MnjWarrantyManagementHeaderEOImpl extends EntityImpl {
             }
         }
         ,
+        WarrantyTagYear {
+            public Object get(MnjWarrantyManagementHeaderEOImpl obj) {
+                return obj.getWarrantyTagYear();
+            }
+
+            public void put(MnjWarrantyManagementHeaderEOImpl obj,
+                            Object value) {
+                obj.setWarrantyTagYear((String)value);
+            }
+        }
+        ,
         MnjWarrantyManagementLineEO {
             public Object get(MnjWarrantyManagementHeaderEOImpl obj) {
                 return obj.getMnjWarrantyManagementLineEO();
@@ -907,6 +918,7 @@ public class MnjWarrantyManagementHeaderEOImpl extends EntityImpl {
     public static final int MAINTAINPERIOD = AttributesEnum.MaintainPeriod.index();
     public static final int NEXTMAINTAINDATE = AttributesEnum.NextMaintainDate.index();
     public static final int SCHEDULEMAINTAINFLAG = AttributesEnum.ScheduleMaintainFlag.index();
+    public static final int WARRANTYTAGYEAR = AttributesEnum.WarrantyTagYear.index();
     public static final int MNJWARRANTYMANAGEMENTLINEEO = AttributesEnum.MnjWarrantyManagementLineEO.index();
     public static final int MNJWARRANTYREPLACEHEADEREO = AttributesEnum.MnjWarrantyReplaceHeaderEO.index();
 
@@ -2030,6 +2042,22 @@ public class MnjWarrantyManagementHeaderEOImpl extends EntityImpl {
      */
     public void setScheduleMaintainFlag(String value) {
         setAttributeInternal(SCHEDULEMAINTAINFLAG, value);
+    }
+
+    /**
+     * Gets the attribute value for WarrantyTagYear, using the alias name WarrantyTagYear.
+     * @return the WarrantyTagYear
+     */
+    public String getWarrantyTagYear() {
+        return (String)getAttributeInternal(WARRANTYTAGYEAR);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for WarrantyTagYear.
+     * @param value value to set the WarrantyTagYear
+     */
+    public void setWarrantyTagYear(String value) {
+        setAttributeInternal(WARRANTYTAGYEAR, value);
     }
 
     /**

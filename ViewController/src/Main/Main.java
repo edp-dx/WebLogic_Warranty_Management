@@ -79,7 +79,7 @@ public class Main {
     private RichOutputText operatingUnitBinding;
     private RichOutputText grnNumberBinding;
     private RichOutputText grnQtyBinding;
-    private String orgName, majorCat, minorCat;
+    private String orgName, majorCat, minorCat, tagYear;
     private RichOutputText organizationNameBinding;
     private RichInputText productSerialNumberBinding;
     private RichInputListOfValues subLocationBinding;
@@ -156,7 +156,11 @@ public class Main {
             warrantyStartDate.setValue(grnDate.getValue());
             AdfFacesContext.getCurrentInstance().addPartialTarget(warrantyStartDate);
             
+            
             setWarrantyExpiryDate(); //calling method overloading
+            
+            parentItemInputFieldBinding.setValue(null);
+            AdfFacesContext.getCurrentInstance().addPartialTarget(parentItemInputFieldBinding);
             
         } catch (Exception e) {
             
@@ -427,13 +431,8 @@ public class Main {
                     System.out.println("******* return null");
                     return null;
                 }
-            }
-            
-
-            
-            
+            }   
         } catch (Exception e) {
-            
             e.printStackTrace();
         }
         return allOK;   
@@ -467,7 +466,7 @@ public class Main {
         System.out.println("Enter Insert In Warranty Header....");
         
         try {
-                if (parentItemInputFieldBinding.getValue() == null || parentItemInputFieldBinding.getValue().equals("")){ //voline e shob add hobe dataloader er, voheader er childexists e yes hobe 
+                if (parentItemInputFieldBinding.getValue() == null || parentItemInputFieldBinding.getValue().equals("")){ //insert in vo header
                     System.out.println("   >>> enter in if condition ---> while 'NO' parent item");
                     Row createdRow = vo.createRow();
                     createdRow.setAttribute("OrgId", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("Ou"));
@@ -484,12 +483,13 @@ public class Main {
                     createdRow.setAttribute("VendorId", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("VendorId"));
                     createdRow.setAttribute("PoHeaderId", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("PoHeaderId"));
                     
-                    createdRow.setAttribute("ItemCategory", appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("ItemCategory"));
-                    createdRow.setAttribute("ItemCategoryId", appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("ItemCategoryId"));
+//                    createdRow.setAttribute("ItemCategory", appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("ItemCategory"));
+//                    createdRow.setAttribute("ItemCategoryId", appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("ItemCategoryId"));
                     createdRow.setAttribute("ItemCategoryShort", appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("ItemCategoryShort"));
-                    createdRow.setAttribute("ItemSubCategory", appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("ItemSubCategory"));
-                    createdRow.setAttribute("ItemSubCategoryId", appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("ItemSubCategoryId"));
+//                    createdRow.setAttribute("ItemSubCategory", appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("ItemSubCategory"));
+//                    createdRow.setAttribute("ItemSubCategoryId", appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("ItemSubCategoryId"));
                     createdRow.setAttribute("ItemSubCategoryShort", appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("ItemSubCategoryShort"));
+                    createdRow.setAttribute("WarrantyTagYear", appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("WarrantyTagYear"));
                     createdRow.setAttribute("WarrantyType", appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("WarrantyType"));
                     createdRow.setAttribute("WarrantyMonths", appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("WarrantyMonths"));
                     System.out.println("Product S/N: " + appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("ProductSerialNo"));
@@ -515,8 +515,9 @@ public class Main {
                     orgName = getOrganizationNameBinding().getValue().toString();
                     majorCat = appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("ItemCategoryShort").toString();
                     minorCat = appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("ItemSubCategoryShort").toString();
-                    createdRow.setAttribute("WarrantyItemSerialNumber", Integer.parseInt(getSrNoString(unit, majorCat, minorCat)));
-                    createdRow.setAttribute("WarrantyTag", generateWarrantyTag(unit, grnNumber, itemId, majorCat, minorCat, getSrNoString(unit, majorCat, minorCat)));
+                    tagYear =  appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("WarrantyTagYear").toString();
+                    createdRow.setAttribute("WarrantyItemSerialNumber", Integer.parseInt(getSrNoString(orgName, majorCat, minorCat, tagYear)));
+                    createdRow.setAttribute("WarrantyTag", generateWarrantyTag(orgName, majorCat, minorCat, tagYear, getSrNoString(orgName, majorCat, minorCat, tagYear)));
                     vo.insertRow(createdRow);  
                 }
                 else{
@@ -717,55 +718,55 @@ public class Main {
         return warrantyHeaderVOEstimatedRowBinding;
     }
 
-    public void generateWarrantyTagButtonAction(ActionEvent actionEvent) {
-        System.out.println("Enter in generateWarrantyTag...");
-        
-        
-       
-        try {
-            ViewObject vo = appM.getMnjWarrantyManagementHeaderVO1();
-            ViewObject vo1 = appM.getWarrantyGRNVO1();
-            String unit = getOperatingUnitBinding().getValue().toString();
-            String itemid = getItemIdBinding().getValue().toString();
-            orgName = getOrganizationNameBinding().getValue().toString();
-            String grnNumber = getGrnNumberBinding().getValue().toString();
-            majorCat = appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MajorCategoryShort").toString();
-            minorCat = appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MinorCategoryShort").toString();
-            System.out.println("Current Unit:" + unit);
-            System.out.println("Current Org Name:" + orgName);
-            System.out.println("Current GrnNumber:" + grnNumber);
-            System.out.println("majorCategory:" + majorCat);
-            System.out.println("minorCategory:" + minorCat);
-            System.out.println("itemSerial:" +getSrNoString(unit, majorCat, minorCat));
-            
-            if (warrantyTypeLOVBinding.getValue() == null || warrantyTypeLOVBinding.getValue() == "" || getWarrantyTypeLOVBinding().getValue().toString().equals("0") ){
-                
-               warnSelectOneChoice(warrantyTypeLOVBinding, "Please Enter Warranty Type!");
-               
-            } else if (warrantyMonthsInputText2.getValue() == null || warrantyMonthsInputText2.getValue() == ""){
-                
-               warnInputText(warrantyMonthsInputText2, "Please Enter Warranty Months!");
-               
-            } else if (productIDInputTextBind.getValue() == null || productIDInputTextBind.getValue() == "" ){
-            
-               warnInputText(productIDInputTextBind, "Please Enter Product S/N!");
-               
-            } else {
-            generateWarrantyTag(unit, grnNumber, itemid, majorCat, minorCat, getSrNoString(unit, majorCat, minorCat)); //method for generating Warranty Tag
-            }
-        } catch (Exception e) {
-            showMessage(e.toString(), "warn");
-            e.printStackTrace();
-        }
-        
-        
-    }
+//    public void generateWarrantyTagButtonAction(ActionEvent actionEvent) {
+//        System.out.println("Enter in generateWarrantyTag...");
+//        
+//        
+//       
+//        try {
+//            ViewObject vo = appM.getMnjWarrantyManagementHeaderVO1();
+//            ViewObject vo1 = appM.getWarrantyGRNVO1();
+//            String unit = getOperatingUnitBinding().getValue().toString();
+//            String itemid = getItemIdBinding().getValue().toString();
+//            orgName = getOrganizationNameBinding().getValue().toString();
+//            String grnNumber = getGrnNumberBinding().getValue().toString();
+//            majorCat = appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MajorCategoryShort").toString();
+//            minorCat = appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MinorCategoryShort").toString();
+//            System.out.println("Current Unit:" + unit);
+//            System.out.println("Current Org Name:" + orgName);
+//            System.out.println("Current GrnNumber:" + grnNumber);
+//            System.out.println("majorCategory:" + majorCat);
+//            System.out.println("minorCategory:" + minorCat);
+//            System.out.println("itemSerial:" +getSrNoString(unit, majorCat, minorCat));
+//            
+//            if (warrantyTypeLOVBinding.getValue() == null || warrantyTypeLOVBinding.getValue() == "" || getWarrantyTypeLOVBinding().getValue().toString().equals("0") ){
+//                
+//               warnSelectOneChoice(warrantyTypeLOVBinding, "Please Enter Warranty Type!");
+//               
+//            } else if (warrantyMonthsInputText2.getValue() == null || warrantyMonthsInputText2.getValue() == ""){
+//                
+//               warnInputText(warrantyMonthsInputText2, "Please Enter Warranty Months!");
+//               
+//            } else if (productIDInputTextBind.getValue() == null || productIDInputTextBind.getValue() == "" ){
+//            
+//               warnInputText(productIDInputTextBind, "Please Enter Product S/N!");
+//               
+//            } else {
+//            generateWarrantyTag(unit, grnNumber, itemid, majorCat, minorCat, getSrNoString(unit, majorCat, minorCat)); //method for generating Warranty Tag
+//            }
+//        } catch (Exception e) {
+//            showMessage(e.toString(), "warn");
+//            e.printStackTrace();
+//        }
+//        
+//        
+//    }
     
-    public String generateWarrantyTag(String Unit, String GrnNumber, String itemId, String majorCategory, String minorCategory, String itemSerial){
+    public String generateWarrantyTag(String Org, String majorCategory, String minorCategory, String warrantyYear, String itemSerial){
         try {
             if (grnQtyBinding.getValue().toString().equals("1")){
                     System.out.println("Tag generate --> GRN Qty == 1");
-                    String warrTagNumber = Unit.concat("/").concat(GrnNumber).concat("/").concat(itemId).concat("/").concat(majorCategory).concat("/").concat(minorCategory).concat("/").concat(itemSerial);
+                    String warrTagNumber = Org.concat("/").concat(majorCategory).concat("/").concat(minorCategory).concat("/").concat(warrantyYear).concat("/").concat(itemSerial);
                     System.out.println("warrTagNumber:" + warrTagNumber);
 //                    String warrTagNumber = warrantyItemSerialGenerate(concatedWarTag);
                     
@@ -775,7 +776,7 @@ public class Main {
             else {
 //                showMessage("More Than 1 GRN Qty!", "info");
                 System.out.println("Tag generate --> GRN Qty > 1");  
-                String warrTagNumber = Unit.concat("/").concat(GrnNumber).concat("/").concat(itemId).concat("/").concat(majorCategory).concat("/").concat(minorCategory).concat("/").concat(itemSerial);
+                String warrTagNumber = Org.concat("/").concat(majorCategory).concat("/").concat(minorCategory).concat("/").concat(warrantyYear).concat("/").concat(itemSerial);
                 System.out.println("warrTagNumber:" + warrTagNumber);
                 return warrTagNumber;
             }
@@ -855,34 +856,18 @@ public class Main {
     /**
      * method for generating Unique Warranty Item Serial for header table
      */
-    public String getSrNoString(String s1, String s2, String s3){ 
+    public String getSrNoString(String s1, String s2, String s3, String s4){ 
        System.out.println("  Enter in getSrNoString()....");
         String srno = "";
-        
-//        String sql  =  "select CUST_MNJ_ONT_PKG.warranty_management_item_srno(:1, :2) as result from dual";
 
-//        ResultSet rs;
         try {
-            
-
-//            rs = appM.getDBTransaction().createStatement(0).executeQuery(sql);
-//            
-//
-//            if (rs.next()){
-//                
-//                srno = rs.getString("result"); 
-//                System.out.println("ItemSerialNo:" + srno);
-//            }
-//           
-//            
-//            rs.close();
-
-            String stmnt = "BEGIN :1 := CUST_MNJ_ONT_PKG.warranty_management_item_srno(:2, :3, :4); end;";
+            String stmnt = "BEGIN :1 := CUST_MNJ_ONT_PKG.warranty_management_item_srno(:2, :3, :4, :5); end;";
             
             CallableStatement cs = appM.getDBTransaction().createCallableStatement(stmnt, 1);
             cs.setString(2, s1);
             cs.setString(3, s2);
             cs.setString(4, s3);
+            cs.setString(5, s4);
 //            cs.setString(1, "GC");
 //            cs.setString(2, "LAPTOP");
             cs.registerOutParameter(1, OracleTypes.VARCHAR);
@@ -902,19 +887,20 @@ public class Main {
     /**
      * method for generating Unique Warranty Item Serial for line table
      */
-    public String getSrNoStringLine(String s1, String s2, String s3){ 
+    public String getSrNoStringLine(String s1, String s2, String s3, String s4){ 
        System.out.println("  Enter in getSrNoStringLine()....");
         String srno = "";
 
         try {
   
 
-            String stmnt = "BEGIN :1 := CUST_MNJ_ONT_PKG.warranty_management_srno_line(:2, :3, :4); end;";
+            String stmnt = "BEGIN :1 := CUST_MNJ_ONT_PKG.warranty_management_srno_line(:2, :3, :4, :5); end;";
             
             CallableStatement cs = appM.getDBTransaction().createCallableStatement(stmnt, 1);
             cs.setString(2, s1);
             cs.setString(3, s2);
             cs.setString(4, s3);
+            cs.setString(5, s4);
     //            cs.setString(1, "GC");
     //            cs.setString(2, "LAPTOP");
             cs.registerOutParameter(1, OracleTypes.VARCHAR);
@@ -1039,7 +1025,7 @@ public class Main {
         AdfFacesContext.getCurrentInstance().addPartialTarget(warrantyHeaderVOEstimatedRowBinding);
         AdfFacesContext.getCurrentInstance().addPartialTarget(dataLoaderTable);
         AdfFacesContext.getCurrentInstance().addPartialTarget(warrantyLineTable);
-        
+
 //        ResetUtils.reset(warrantyGRNTable);
 //        ResetUtils.reset(mnjWarrantyHeaderTable);
 //        ResetUtils.reset(grNVOEstimatedRowBinding);
@@ -1094,14 +1080,14 @@ public class Main {
             warnInputText(warrantyMonthsInputTextBind, "Please Enter Warranty Months!");
             
         } 
-         else if (majorCategoryBinding.getValue() == null || majorCategoryBinding.getValue() == ""){
-             
-            warnInputListOfValues(majorCategoryBinding, "Please Enter Item Category!");
-
-        } else if (subCategoryBinding.getValue() == null || subCategoryBinding.getValue() == ""){
-             
-            warnInputListOfValues(subCategoryBinding, "Please Enter Item Sub-Category!");
-         } 
+//         else if (majorCategoryBinding.getValue() == null || majorCategoryBinding.getValue() == ""){
+//             
+//            warnInputListOfValues(majorCategoryBinding, "Please Enter Item Category!");
+//
+//        } else if (subCategoryBinding.getValue() == null || subCategoryBinding.getValue() == ""){
+//             
+//            warnInputListOfValues(subCategoryBinding, "Please Enter Item Sub-Category!");
+//         } 
         
         else {
              try {
@@ -1167,12 +1153,13 @@ public class Main {
                 createdRow.setAttribute("PoLineId", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("PoLineId"));
                 createdRow.setAttribute("VendorId", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("VendorId"));
                 createdRow.setAttribute("PoHeaderId", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("PoHeaderId"));
-                createdRow.setAttribute("ItemCategory", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MajorCategoryLOV"));
-                createdRow.setAttribute("ItemCategoryId", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MajorCategoyId"));
-                createdRow.setAttribute("ItemCategoryShort", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MajorCategoryShort"));
-                createdRow.setAttribute("ItemSubCategory", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MinorCategoryDesc"));
-                createdRow.setAttribute("ItemSubCategoryId", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MinorCategoryId"));
-                createdRow.setAttribute("ItemSubCategoryShort", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MinorCategoryShort"));
+//                createdRow.setAttribute("ItemCategory", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MajorCategoryLOV"));
+//                createdRow.setAttribute("ItemCategoryId", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MajorCategoyId"));
+                createdRow.setAttribute("ItemCategoryShort", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MajorDescription"));
+//                createdRow.setAttribute("ItemSubCategory", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MinorCategoryDesc"));
+//                createdRow.setAttribute("ItemSubCategoryId", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MinorCategoryId"));
+                createdRow.setAttribute("ItemSubCategoryShort", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MinorDescription"));
+                createdRow.setAttribute("WarrantyTagYear", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("CurrentYear"));
                 createdRow.setAttribute("ScheduleMaintainFlag", "Y"); // added by Mr. Sakibul Islam on 12.Mar.2020
                 createdRow.setAttribute("MaintainPeriod", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("SchedulePeriod")); // added by Mr. Sakibul Islam on 18.Mar.2020
                 createdRow.setAttribute("NextMaintainDate", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("NextMaintainDate")); // added by Mr. Sakibul Islam on 18.Mar.2020
@@ -1180,17 +1167,17 @@ public class Main {
                 createdRow.setAttribute("WarrantyStartDate", castToJBODate(warrantyStartDateC, "dd-MMM-yyyy")); // added by Mr. Sakibul Islam on 08.Apr.2020
             //            createdRow.setAttribute("WarrantyEndDate", castToJBODate(warrantyExpiryDateC, "E MMM dd HH:mm:ss Z yyyy")); // added by Mr. Sakibul Islam on 08.Apr.2020
                 createdRow.setAttribute("WarrantyEndDate", castToJBODate(getCalculatedExpiryDate(), "E MMM dd HH:mm:ss Z yyyy")); // added by Mr. Sakibul Islam on 08.Apr.2020
-                orgName = getOrganizationNameBinding().getValue().toString();
-                String unit = getOperatingUnitBinding().getValue().toString();
-                majorCat = appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MajorCategoryShort").toString();
-                minorCat = appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MinorCategoryShort").toString();
+//                orgName = getOrganizationNameBinding().getValue().toString();
+//                String unit = getOperatingUnitBinding().getValue().toString();
+//                majorCat = appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MajorCategoryShort").toString();
+//                minorCat = appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MinorCategoryShort").toString();
                 createdRow.setAttribute("WarrantyType", warrantyType.equals("0") ? "" : warrantyType.equals("1") ? "Guarantee" : warrantyType.equals("2") ? "Service" : "Warranty");
                 System.out.println("warranty months from GRN details: " + getWarrantyPeriodInMonthsBind().getValue());
             //            createdRow.setAttribute("WarrantyMonths", warrantyPeriodInMonthsBind.getValue().equals("0") ? getWarrantyMonthsInputText2().getValue(): getWarrantyMonthsInputTextBind().getValue());
                 createdRow.setAttribute("WarrantyMonths", getWarrantyMonthsInputText2().getValue());
-                orgName = getOrganizationNameBinding().getValue().toString();
-                majorCat = appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MajorCategoryShort").toString();
-                minorCat = appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MinorCategoryShort").toString();
+//                orgName = getOrganizationNameBinding().getValue().toString();
+//                majorCat = appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MajorCategoryShort").toString();
+//                minorCat = appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MinorCategoryShort").toString();
                 vo.insertRow(createdRow);
             }
             else{
@@ -1207,28 +1194,30 @@ public class Main {
                 createdRow.setAttribute("PoLineId", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("PoLineId"));
                 createdRow.setAttribute("VendorId", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("VendorId"));
                 createdRow.setAttribute("PoHeaderId", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("PoHeaderId"));
-                createdRow.setAttribute("ItemCategory", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MajorCategoryLOV"));
-                createdRow.setAttribute("ItemCategoryId", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MajorCategoyId"));
-                createdRow.setAttribute("ItemCategoryShort", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MajorCategoryShort"));
-                createdRow.setAttribute("ItemSubCategory", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MinorCategoryDesc"));
-                createdRow.setAttribute("ItemSubCategoryId", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MinorCategoryId"));
-                createdRow.setAttribute("ItemSubCategoryShort", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MinorCategoryShort"));
+//                createdRow.setAttribute("ItemCategory", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MajorCategoryLOV"));
+//                createdRow.setAttribute("ItemCategoryId", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MajorCategoyId"));
+                createdRow.setAttribute("ItemCategoryShort", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MajorDescription"));
+//                createdRow.setAttribute("ItemSubCategory", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MinorCategoryDesc"));
+//                createdRow.setAttribute("ItemSubCategoryId", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MinorCategoryId"));
+                createdRow.setAttribute("ItemSubCategoryShort", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MinorDescription"));
+                createdRow.setAttribute("WarrantyTagYear", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("CurrentYear"));
+                
                 createdRow.setAttribute("ScheduleMaintainFlag", "N"); // added by Mr. Sakibul Islam on 12.Mar.2020
                 
                 createdRow.setAttribute("WarrantyStartDate", castToJBODate(warrantyStartDateC, "dd-MMM-yyyy")); // added by Mr. Sakibul Islam on 08.Apr.2020
             //            createdRow.setAttribute("WarrantyEndDate", castToJBODate(warrantyExpiryDateC, )); // added by Mr. Sakibul Islam on 08.Apr.2020
                 createdRow.setAttribute("WarrantyEndDate", castToJBODate(getCalculatedExpiryDate(), "E MMM dd HH:mm:ss Z yyyy")); // added by Mr. Sakibul Islam on 08.Apr.2020
-                orgName = getOrganizationNameBinding().getValue().toString();
-                String unit = getOperatingUnitBinding().getValue().toString();
-                majorCat = appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MajorCategoryShort").toString();
-                minorCat = appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MinorCategoryShort").toString();
+//                orgName = getOrganizationNameBinding().getValue().toString();
+//                String unit = getOperatingUnitBinding().getValue().toString();
+//                majorCat = appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MajorCategoryShort").toString();
+//                minorCat = appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MinorCategoryShort").toString();
                 createdRow.setAttribute("WarrantyType", warrantyType.equals("0") ? "" : warrantyType.equals("1") ? "Guarantee" : warrantyType.equals("2") ? "Service" : "Warranty");
                 System.out.println("warranty months from GRN details: " + getWarrantyPeriodInMonthsBind().getValue());
             //            createdRow.setAttribute("WarrantyMonths", warrantyPeriodInMonthsBind.getValue().equals("0") ? getWarrantyMonthsInputText2().getValue(): getWarrantyMonthsInputTextBind().getValue());
                 createdRow.setAttribute("WarrantyMonths", getWarrantyMonthsInputText2().getValue());
-                orgName = getOrganizationNameBinding().getValue().toString();
-                majorCat = appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MajorCategoryShort").toString();
-                minorCat = appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MinorCategoryShort").toString();
+//                orgName = getOrganizationNameBinding().getValue().toString();
+//                majorCat = appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MajorCategoryShort").toString();
+//                minorCat = appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("MinorCategoryShort").toString();
                 vo.insertRow(createdRow);
             }
         } catch (Exception e) {
@@ -1722,22 +1711,23 @@ public class Main {
         return parentWarrantyTagInputBind;
     }
     
-    public void insertInLineVo(ViewObject voLine, ViewObject voDataloader, ViewObject voDataLoaderWarrantyInfo, ViewObject voHeader, ViewObject voWarrGrn ){
-        System.out.println("Enter in insertInLineVo....");
+    public void insertInLineVo(ViewObject voLine, ViewObject voDataloaderSetPar, ViewObject voDataLoaderWarrantyInfo, ViewObject voHeader, ViewObject voWarrGrn ){
+        System.out.println("Enter in Insert In Line VO....");
         Row createdRow = voLine.createRow();
-        System.out.println(">>>> HeaderId: " + voDataloader.getCurrentRow().getAttribute("HeaderId"));
-        //insert in header 
+        System.out.println(">>>> HeaderId: " + voDataloaderSetPar.getCurrentRow().getAttribute("HeaderId"));
+        //insert in header
+        voHeader.setRangeSize(32750);
         Row[] rowArray = voHeader.getAllRowsInRange();
         
         for (Row row : rowArray){ 
-            if (row.getAttribute("HeaderId") == voDataloader.getCurrentRow().getAttribute("HeaderId")){
+            if (row.getAttribute("HeaderId") == voDataloaderSetPar.getCurrentRow().getAttribute("HeaderId")){
                 System.out.println("HeaderId Matches, now putting child exists 'Yes' in header Row...........");
                 row.setAttribute("ChildExistsFlag", "Yes");
             }
         }
         
         //insert in line
-        createdRow.setAttribute("HeaderId", voDataloader.getCurrentRow().getAttribute("HeaderId")); //this line is creating foreign key in line vo
+        createdRow.setAttribute("HeaderId", voDataloaderSetPar.getCurrentRow().getAttribute("HeaderId")); //this line is creating foreign key in line vo
         createdRow.setAttribute("OrgId", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("Ou"));
         createdRow.setAttribute("Organization", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("OrganizationCode"));
         createdRow.setAttribute("SupplierName", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("Supplier"));
@@ -1752,12 +1742,13 @@ public class Main {
         createdRow.setAttribute("VendorId", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("VendorId"));
         createdRow.setAttribute("PoHeaderId", appM.getWarrantyGRNVO1().getCurrentRow().getAttribute("PoHeaderId"));
         
-        createdRow.setAttribute("ItemCategory", appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("ItemCategory"));
-        createdRow.setAttribute("ItemCategoryId", appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("ItemCategoryId"));
+//        createdRow.setAttribute("ItemCategory", appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("ItemCategory"));
+//        createdRow.setAttribute("ItemCategoryId", appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("ItemCategoryId"));
         createdRow.setAttribute("ItemCategoryShort", appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("ItemCategoryShort"));
-        createdRow.setAttribute("ItemSubCategory", appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("ItemSubCategory"));
-        createdRow.setAttribute("ItemSubCategoryId", appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("ItemSubCategoryId"));
+//        createdRow.setAttribute("ItemSubCategory", appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("ItemSubCategory"));
+//        createdRow.setAttribute("ItemSubCategoryId", appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("ItemSubCategoryId"));
         createdRow.setAttribute("ItemSubCategoryShort", appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("ItemSubCategoryShort"));
+        createdRow.setAttribute("WarrantyTagYear", appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("WarrantyTagYear"));
         createdRow.setAttribute("WarrantyType", appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("WarrantyType"));
         createdRow.setAttribute("WarrantyMonths", appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("WarrantyMonths"));
         System.out.println("Product S/N: " + appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("ProductSerialNo"));
@@ -1783,8 +1774,9 @@ public class Main {
         orgName = getOrganizationNameBinding().getValue().toString();
         majorCat = appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("ItemCategoryShort").toString();
         minorCat = appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("ItemSubCategoryShort").toString();
-        createdRow.setAttribute("WarrantyItemSerialNumber", Integer.parseInt(getSrNoStringLine(unit, majorCat, minorCat)));
-        createdRow.setAttribute("WarrantyTag", generateWarrantyTag(unit, grnNumber, itemId, majorCat, minorCat, getSrNoStringLine(unit, majorCat, minorCat)));
+        tagYear =  appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().getAttribute("WarrantyTagYear").toString();
+        createdRow.setAttribute("WarrantyItemSerialNumber", Integer.parseInt(getSrNoStringLine(orgName, majorCat, minorCat, tagYear)));
+        createdRow.setAttribute("WarrantyTag", generateWarrantyTag(orgName, majorCat, minorCat, tagYear, getSrNoStringLine(orgName, majorCat, minorCat, tagYear)));
         voLine.insertRow(createdRow);
     }
 
@@ -1922,6 +1914,7 @@ public class Main {
     public void deleteAllDataLoader(ActionEvent actionEvent) {
         try {
             ViewObject vo = appM.getMnjWarrantyDataLoaderVO1();
+            vo.setRangeSize(32750);
             Row rowArray[] = vo.getAllRowsInRange();
             System.out.println("total entries: " + rowArray.length);
             for (Row eachRow: rowArray){
@@ -2293,11 +2286,10 @@ public class Main {
                         else if (voLength > 0){
                             System.out.println("enter in volength > 0, " +"voLength: " + voLength);
                             System.out.println("WarrantyType: " + getWarrantyTypeLOVBinding().getValue());
-
                             System.out.println("Warranty Months: " + getWarrantyMonthsInputTextBind().getValue());
 
-                            System.out.println("Major Category: " + getMajorCategoryBinding().getValue());
-                            System.out.println("Minor Categroy: " + getSubCategoryBinding().getValue());
+//                            System.out.println("Major Category: " + getMajorCategoryBinding().getValue());
+//                            System.out.println("Minor Categroy: " + getSubCategoryBinding().getValue());
                             for (Row r : row ){
                                 System.out.println("enter for-each loop 1...");
                                 System.out.println("row product s/n: " + r.getAttribute("ProductSerialNo"));
@@ -2345,16 +2337,16 @@ public class Main {
             System.out.println("Enter in yes button action...");
             ViewObject vo = appM.getMnjWarrantyManagementHeaderVO1();
             if (getGrnQtyBinding().getValue().toString().equals("1")){
-                System.out.println("++++++++++++Grn Qty == 1");
+                System.out.println("If Grn Qty == 1..........");
                 int grnQty = Integer.parseInt(getGrnQtyBinding().getValue().toString()) ;
                 insertInWarrantyHeader(vo, grnQty); // method for inserting data in MASTER_TABLE
                 appM.getMnjWarrantyDataLoaderVO1().getCurrentRow().remove();
                 save();
                 refreshAllVO();
             }else {
-                System.out.println("++++++++++++Grn Qty > 1");
+                System.out.println("If Grn Qty > 1.........");
                 int grnQty = Integer.parseInt(getGrnQtyBinding().getValue().toString()) ;
-                System.out.println("======Grn Qty:" + grnQty);
+                System.out.println("Grn Qty:" + grnQty);
                 int iterator = 0;
                 int i = 0 ;
                 while (iterator < grnQty){ 

@@ -1420,5 +1420,20 @@
         <Item Value="RemainingWarrantyDays"/>
       </AttrNames>
     </attributeValues>
+    <attributeValues IterBinding="WarrantyGRNVO1Iterator" id="MajorDescription">
+      <AttrNames>
+        <Item Value="MajorDescription"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="WarrantyGRNVO1Iterator" id="MinorDescription">
+      <AttrNames>
+        <Item Value="MinorDescription"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="WarrantyGRNVO1Iterator" id="CurrentYear">
+      <AttrNames>
+        <Item Value="CurrentYear"/>
+      </AttrNames>
+    </attributeValues>
   </bindings>
 </pageDefinition>

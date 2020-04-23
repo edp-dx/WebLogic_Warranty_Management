@@ -226,7 +226,7 @@
       Hint="showAndExecute"/>
   </ListBinding>
   <SQLQuery>
-    <![CDATA[SELECT DISTINCT
+    <![CDATA[SELECT DISTINCT  
          pla.ORG_ID OU,
          ood.ORGANIZATION_CODE,
          pla.PO_HEADER_ID,
@@ -235,12 +235,23 @@
          pv.VENDOR_NAME SUPPLIER,
          pla.PO_LINE_ID,
          pla.ITEM_ID,
-         /** Item Code Added by Mr. Sakibul Islam on 5.Apr.2020 **/
-         (SELECT msik.CONCATENATED_SEGMENTS
-            FROM mtl_system_items_kfv msik
-           WHERE msik.inventory_item_id = pla.ITEM_ID AND ROWNUM = 1)
-            Item_code,
+         msik.CONCATENATED_SEGMENTS Item_code, --added by Sakibul Islam 19.Apr.2020
          pla.ITEM_DESCRIPTION,
+         (SELECT FFVT.DESCRIPTION
+            FROM FND_FLEX_VALUES FFV, FND_FLEX_VALUES_TL FFVT
+           WHERE     MC.SEGMENT2 = FFV.FLEX_VALUE
+                 AND FFV.FLEX_VALUE_ID = FFVT.FLEX_VALUE_ID
+                 AND FFV.FLEX_VALUE_SET_ID = 1014899
+                 AND ROWNUM = 1)
+            Major_description, --added by Sakibul Islam 19.Apr.2020
+         (SELECT FFVT.DESCRIPTION
+            FROM FND_FLEX_VALUES FFV, FND_FLEX_VALUES_TL FFVT
+           WHERE     MC.SEGMENT3 = FFV.FLEX_VALUE
+                 AND FFV.FLEX_VALUE_ID = FFVT.FLEX_VALUE_ID
+                 AND FFV.PARENT_FLEX_VALUE_LOW = MC.SEGMENT2
+                 AND FFV.FLEX_VALUE_SET_ID = 1014900
+                 AND ROWNUM = 1)
+            Minor_description, --added by Sakibul Islam 19.Apr.2020
          pla.UNIT_MEAS_LOOKUP_CODE UOM,
          pla.ATTRIBUTE_CATEGORY,
          pla.ATTRIBUTE5 Warrantable,
@@ -262,14 +273,19 @@
          rsh.RECEIPT_NUM GRN_NUMBER,
          rt.TRANSACTION_DATE GRN_DATE,
          rt.QUANTITY GRN_QTY,
-         rt.UNIT_OF_MEASURE GRN_OUM
+         rt.UNIT_OF_MEASURE GRN_OUM,
+         to_char(sysdate,'YYYY') Current_Year--added by Sakibul Islam 19.Apr.2020
     FROM po_lines_all pla,
          po_headers_all pha,
          po_vendors pv,
          rcv_transactions rt,
          rcv_shipment_headers rsh,
-         org_organization_definitions ood
-   WHERE     pla.ORG_ID = ood.OPERATING_UNIT
+         org_organization_definitions ood,
+         mtl_system_items_kfv msik,
+         MTL_ITEM_CATEGORIES_V MICV,
+         MTL_CATEGORIES MC
+   WHERE     1 = 1
+         AND pla.ORG_ID = ood.OPERATING_UNIT
          AND rt.ORGANIZATION_ID = ood.ORGANIZATION_ID
          AND pha.ORG_ID = pla.ORG_ID
          AND pha.PO_HEADER_ID = pla.PO_HEADER_ID
@@ -277,6 +293,14 @@
          AND pla.PO_HEADER_ID = rt.PO_HEADER_ID
          AND pla.PO_LINE_ID = rt.PO_LINE_ID
          AND rt.SHIPMENT_HEADER_ID = rsh.SHIPMENT_HEADER_ID
+         AND msik.inventory_item_id = pla.item_id --added by Sakibul Islam 19.Apr.2020
+         AND msik.ORGANIZATION_ID = rt.ORGANIZATION_ID --added by Sakibul Islam 19.Apr.2020
+         AND msik.inventory_item_id = MICV.inventory_item_id --added by Sakibul Islam 19.Apr.2020
+         AND msik.ORGANIZATION_ID = MICV.ORGANIZATION_ID --added by Sakibul Islam 19.Apr.2020
+         AND MICV.inventory_item_id = pla.item_id --added by Sakibul Islam 19.Apr.2020
+         AND MICV.ORGANIZATION_ID = rt.ORGANIZATION_ID --added by Sakibul Islam 19.Apr.2020
+         AND MICV.CATEGORY_ID = MC.CATEGORY_ID --added by Sakibul Islam 19.Apr.2020
+         AND micv.category_set_id = 1 --added by Sakibul Islam 19.Apr.2020
          AND pla.ATTRIBUTE_CATEGORY IN ('Other Info', 'Charge Account')
          AND pla.attribute5 = 'Yes'
          AND rt.TRANSACTION_TYPE = 'DELIVER'
@@ -301,6 +325,7 @@
                             FROM MNJ_WARRANTY_MANAGEMENT_LINE mwml
                            WHERE     mwml.po_line_id = pla.PO_LINE_ID
                                  AND mwml.grn_date = rt.TRANSACTION_DATE)) --added by Sakibul Islam on 22-Jan-2020
+--and msik.inventory_item_id = 1243709
 --and rsh.RECEIPT_NUM = '60112'
 ORDER BY rt.TRANSACTION_DATE DESC]]>
   </SQLQuery>
@@ -447,6 +472,36 @@ ORDER BY rt.TRANSACTION_DATE DESC]]>
     ColumnType="VARCHAR2"
     AliasName="ITEM_DESCRIPTION"
     Expression="ITEM_DESCRIPTION"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="240"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MajorDescription"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="240"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="MAJOR_DESCRIPTION"
+    Expression="MAJOR_DESCRIPTION"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="240"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MinorDescription"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="240"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="MINOR_DESCRIPTION"
+    Expression="MINOR_DESCRIPTION"
     SQLType="VARCHAR">
     <DesignTime>
       <Attr Name="_DisplaySize" Value="240"/>
@@ -602,6 +657,21 @@ ORDER BY rt.TRANSACTION_DATE DESC]]>
     SQLType="VARCHAR">
     <DesignTime>
       <Attr Name="_DisplaySize" Value="25"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CurrentYear"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="4"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="CURRENT_YEAR"
+    Expression="CURRENT_YEAR"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="4"/>
     </DesignTime>
   </ViewAttribute>
   <ViewAttribute

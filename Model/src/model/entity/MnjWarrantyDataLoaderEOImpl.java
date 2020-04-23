@@ -690,6 +690,16 @@ public class MnjWarrantyDataLoaderEOImpl extends EntityImpl {
                 obj.setScheduleMaintainFlag((String)value);
             }
         }
+        ,
+        WarrantyTagYear {
+            public Object get(MnjWarrantyDataLoaderEOImpl obj) {
+                return obj.getWarrantyTagYear();
+            }
+
+            public void put(MnjWarrantyDataLoaderEOImpl obj, Object value) {
+                obj.setWarrantyTagYear((String)value);
+            }
+        }
         ;
         private static AttributesEnum[] vals = null;
         private static int firstIndex = 0;
@@ -787,6 +797,7 @@ public class MnjWarrantyDataLoaderEOImpl extends EntityImpl {
     public static final int MAINTAINPERIOD = AttributesEnum.MaintainPeriod.index();
     public static final int NEXTMAINTAINDATE = AttributesEnum.NextMaintainDate.index();
     public static final int SCHEDULEMAINTAINFLAG = AttributesEnum.ScheduleMaintainFlag.index();
+    public static final int WARRANTYTAGYEAR = AttributesEnum.WarrantyTagYear.index();
 
     /**
      * This is the default constructor (do not remove).
@@ -1867,6 +1878,22 @@ public class MnjWarrantyDataLoaderEOImpl extends EntityImpl {
      */
     public void setScheduleMaintainFlag(String value) {
         setAttributeInternal(SCHEDULEMAINTAINFLAG, value);
+    }
+
+    /**
+     * Gets the attribute value for WarrantyTagYear, using the alias name WarrantyTagYear.
+     * @return the WarrantyTagYear
+     */
+    public String getWarrantyTagYear() {
+        return (String)getAttributeInternal(WARRANTYTAGYEAR);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for WarrantyTagYear.
+     * @param value value to set the WarrantyTagYear
+     */
+    public void setWarrantyTagYear(String value) {
+        setAttributeInternal(WARRANTYTAGYEAR, value);
     }
 
     /**
