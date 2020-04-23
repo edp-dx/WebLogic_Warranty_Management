@@ -3293,8 +3293,7 @@
               </af:panelLabelAndMessage>
             </af:panelFormLayout>
             <af:spacer width="30" height="5" id="s26"/>
-            <af:panelGroupLayout id="pgl11" layout="horizontal"
-                                 inlineStyle="width:1100px;">
+            <af:panelGroupLayout id="pgl11" layout="horizontal">
               <af:panelHeader text="Warranty Info" id="ph3"
                               icon="/icons/Icon_6-512.png"
                               inlineStyle="width:450px;">
@@ -3548,8 +3547,10 @@
                 <f:facet name="info"/>
                 <af:panelGroupLayout id="pgl12" inlineStyle=" width:300px;"
                                      layout="vertical"
-                                     partialTriggers="pc3:cb11">
-                  <af:panelGroupLayout id="pgl13" layout="horizontal">
+                                     partialTriggers="pc3:cb11"
+                                     rendered="false">
+                  <af:panelGroupLayout id="pgl13" layout="horizontal"
+                                       rendered="true">
                     <af:outputText value="Item Category:" id="ot34"/>
                     <af:spacer width="22" height="10" id="s9"/>
                     <af:inputListOfValues id="majorCategoryLOVId"
@@ -3567,7 +3568,8 @@
                       <af:autoSuggestBehavior suggestedItems="#{bindings.MajorCategoryLOV.suggestedItems}"/>
                     </af:inputListOfValues>
                   </af:panelGroupLayout>
-                  <af:panelGroupLayout id="pgl14" layout="horizontal">
+                  <af:panelGroupLayout id="pgl14" layout="horizontal"
+                                       rendered="true">
                     <af:outputText value="Item Sub-Category:" id="ot35"/>
                     <af:spacer width="10" height="10" id="s10" visible="false"/>
                     <af:inputListOfValues id="minorCategoryDescId"
@@ -3608,6 +3610,29 @@
                                       inlineStyle="height:25px;"/>
                   </af:panelGroupLayout>
                 </af:panelGroupLayout>
+                <af:panelFormLayout id="pfl12"
+                                    inlineStyle="background-color:rgb(247,247,247); border-width:thin; border-style:solid; width:300px; padding:5px;border-color:rgb(198,198,198);">
+                  <af:panelLabelAndMessage label="Organization:"
+                                           id="plam98">
+                    <af:outputText value="#{bindings.OrganizationCode.inputValue}"
+                                   id="ot515" inlineStyle="font-weight:bold;"/>
+                  </af:panelLabelAndMessage>
+                  <af:panelLabelAndMessage label="Major Category:"
+                                           id="plam100">
+                    <af:outputText value="#{bindings.MajorDescription.inputValue}"
+                                   id="ot518" inlineStyle="font-weight:bold;"/>
+                  </af:panelLabelAndMessage>
+                  <af:panelLabelAndMessage label="Minor Category:"
+                                           id="plam97">
+                    <af:outputText value="#{bindings.MinorDescription.inputValue}"
+                                   id="ot516" inlineStyle="font-weight:bold;"/>
+                  </af:panelLabelAndMessage>
+                  <af:panelLabelAndMessage label="Year:"
+                                           id="plam99">
+                    <af:outputText value="#{bindings.CurrentYear.inputValue}"
+                                   id="ot517" inlineStyle="font-weight:bold;"/>
+                  </af:panelLabelAndMessage>
+                </af:panelFormLayout>
               </af:panelHeader>
               <af:spacer width="20" height="10" id="s14"/>
               <af:panelHeader text="Relations" id="ph5"
