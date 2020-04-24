@@ -226,7 +226,7 @@
       Hint="showAndExecute"/>
   </ListBinding>
   <SQLQuery>
-    <![CDATA[SELECT DISTINCT  
+    <![CDATA[SELECT DISTINCT
          pla.ORG_ID OU,
          ood.ORGANIZATION_CODE,
          pla.PO_HEADER_ID,
@@ -243,7 +243,7 @@
                  AND FFV.FLEX_VALUE_ID = FFVT.FLEX_VALUE_ID
                  AND FFV.FLEX_VALUE_SET_ID = 1014899
                  AND ROWNUM = 1)
-            Major_description, --added by Sakibul Islam 19.Apr.2020
+            Major_description,            --added by Sakibul Islam 19.Apr.2020
          (SELECT FFVT.DESCRIPTION
             FROM FND_FLEX_VALUES FFV, FND_FLEX_VALUES_TL FFVT
            WHERE     MC.SEGMENT3 = FFV.FLEX_VALUE
@@ -251,7 +251,7 @@
                  AND FFV.PARENT_FLEX_VALUE_LOW = MC.SEGMENT2
                  AND FFV.FLEX_VALUE_SET_ID = 1014900
                  AND ROWNUM = 1)
-            Minor_description, --added by Sakibul Islam 19.Apr.2020
+            Minor_description,            --added by Sakibul Islam 19.Apr.2020
          pla.UNIT_MEAS_LOOKUP_CODE UOM,
          pla.ATTRIBUTE_CATEGORY,
          pla.ATTRIBUTE5 Warrantable,
@@ -272,9 +272,9 @@
             Warranty_period_in_months,
          rsh.RECEIPT_NUM GRN_NUMBER,
          rt.TRANSACTION_DATE GRN_DATE,
-         rt.QUANTITY GRN_QTY,
+         ROUND (TO_NUMBER (rt.QUANTITY)) GRN_QTY,
          rt.UNIT_OF_MEASURE GRN_OUM,
-         to_char(sysdate,'YYYY') Current_Year--added by Sakibul Islam 19.Apr.2020
+         TO_CHAR (SYSDATE, 'YYYY') Current_Year --added by Sakibul Islam 19.Apr.2020
     FROM po_lines_all pla,
          po_headers_all pha,
          po_vendors pv,
@@ -300,7 +300,7 @@
          AND MICV.inventory_item_id = pla.item_id --added by Sakibul Islam 19.Apr.2020
          AND MICV.ORGANIZATION_ID = rt.ORGANIZATION_ID --added by Sakibul Islam 19.Apr.2020
          AND MICV.CATEGORY_ID = MC.CATEGORY_ID --added by Sakibul Islam 19.Apr.2020
-         AND micv.category_set_id = 1 --added by Sakibul Islam 19.Apr.2020
+         AND micv.category_set_id = 1     --added by Sakibul Islam 19.Apr.2020
          AND pla.ATTRIBUTE_CATEGORY IN ('Other Info', 'Charge Account')
          AND pla.attribute5 = 'Yes'
          AND rt.TRANSACTION_TYPE = 'DELIVER'
@@ -326,7 +326,7 @@
                            WHERE     mwml.po_line_id = pla.PO_LINE_ID
                                  AND mwml.grn_date = rt.TRANSACTION_DATE)) --added by Sakibul Islam on 22-Jan-2020
 --and msik.inventory_item_id = 1243709
---and rsh.RECEIPT_NUM = '60112'
+--and rsh.RECEIPT_NUM in ('14100','13913')
 ORDER BY rt.TRANSACTION_DATE DESC]]>
   </SQLQuery>
   <ViewAttribute
