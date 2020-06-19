@@ -110,6 +110,9 @@
          **/
    and (((:P_Resp_Id = '50821') and MnjWarrantyManagementHeaderE1.ORG_ID = 342) --50821 --> GFL 
          or ((:P_Resp_Id = '50822') and MnjWarrantyManagementHeaderE1.ORG_ID = 344) --50822 --> GWL
+OR ( ( :P_Resp_Id = '50819') AND MnjWarrantyManagementHeaderE1.ORG_ID = 340) --50819 --> CAL
+         OR ( ( :P_Resp_Id = '50820') AND MnjWarrantyManagementHeaderE1.ORG_ID = 341) --50820 --> CGL
+         OR ( ( :P_Resp_Id = '50823') AND MnjWarrantyManagementHeaderE1.ORG_ID = 343) --50823 --> CWPL
          or ((:P_Resp_Id = '20634') and MnjWarrantyManagementHeaderE1.ORG_ID in (340,341,342,343,344,526,527))) --20634-->Corporate Office 
    and MnjWarrantyManagementHeaderE1.CHILD_EXISTS_FLAG = 'No'
 ORDER BY MnjWarrantyManagementHeaderE1.HEADER_ID DESC]]>

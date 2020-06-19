@@ -185,7 +185,7 @@
                                        icon="/icons/edit new.png"
                                        inlineStyle="font-weight:bold;"
                                        shortDesc="Click to Fill Warranty Details">
-                    <af:showPopupBehavior popupId=":::p1" alignId=":::f1"/>
+                    <af:showPopupBehavior popupId=":::p1" alignId=":::ph1"/>
                   </af:commandImageLink>
                 </af:column>
               </af:table>
@@ -194,7 +194,7 @@
           <af:showDetailItem text="Warranty Enabled" id="sdi2" visible="false"/>
         </af:panelTabbed>
         <af:panelTabbed id="pt2" styleClass="AFStretchWidth"
-                        inlineStyle="height:750px;">
+                        inlineStyle="height:1200px;">
           <af:showDetailItem text="Warranty Enabled" id="sdi3"
                              icon="/icons/ok_new.png">
             <af:panelGroupLayout id="panelGroupLayout1" layout="horizontal"
@@ -213,7 +213,8 @@
               <af:outputText value="Completed" id="outputText6"
                              inlineStyle="font-size:15px; color:Black; font-weight:bold;"/>
             </af:panelGroupLayout>
-            <af:panelCollection id="pc2" styleClass="AFStretchWidth">
+            <af:panelCollection id="pc2" styleClass="AFStretchWidth"
+                                inlineStyle="height:600px;">
               <f:facet name="menus"/>
               <f:facet name="toolbar">
                 <af:toolbar id="t4">
@@ -1380,7 +1381,7 @@
               <f:facet name="legend"/>
               <f:facet name="info"/>
               <af:panelCollection id="pc4" styleClass="AFStretchWidth"
-                                  visible="true">
+                                  visible="true" inlineStyle="height:450px;">
                 <f:facet name="menus"/>
                 <f:facet name="toolbar">
                   <af:toolbar id="t10">
@@ -3687,7 +3688,7 @@
             </af:panelHeader>
             <af:spacer width="30" height="5" id="spacer16"/>
             <af:panelCollection id="pc3"
-                                inlineStyle="width:1220px; height:260px;">
+                                inlineStyle="width:1220px; height:500px;">
               <f:facet name="menus"/>
               <f:facet name="toolbar">
                 <af:toolbar id="t6" inlineStyle="width:400px;">
@@ -4066,7 +4067,7 @@
             <f:facet name="buttonBar">
               <af:group id="g2">
                 <af:commandButton text="Yes" id="cb18"
-                                  icon="/icons/checked 2.png"
+                                  icon="/icons/checked 2 15x15.png"
                                   inlineStyle="height:27px; font-weight:bold;"
                                   partialSubmit="true"
                                   actionListener="#{Main_Bean.callYesButtonAction}"/>
@@ -4595,7 +4596,7 @@
                 <f:facet name="legend"/>
                 <f:facet name="info"/>
                 <af:panelFormLayout id="pfl6"
-                                    inlineStyle="background-color:rgb(234,249,255); border-color:rgb(181,181,181); border-style:solid; border-width:thin; width:600px; height:105px;">
+                                    inlineStyle="background-color:rgb(234,249,255); border-color:rgb(181,181,181); border-style:solid; border-width:thin; width:600px; height:120.0px;">
                   <af:panelLabelAndMessage label="Warranty Tag:" id="plam55">
                     <af:outputText value="#{bindings.WarrantyTag.inputValue}"
                                    id="ot474" inlineStyle="font-weight:bold;"/>
@@ -4645,7 +4646,7 @@
                 <f:facet name="legend"/>
                 <f:facet name="info"/>
                 <af:panelFormLayout id="pfl7"
-                                    inlineStyle="background-color:rgb(234,249,255); border-color:rgb(181,181,181); border-style:solid; border-width:thin; width:485px; height:105px;">
+                                    inlineStyle="background-color:rgb(234,249,255); border-color:rgb(181,181,181); border-style:solid; border-width:thin; width:485px; height:115.0px;">
                   <af:panelLabelAndMessage label="Maintenance Start From:"
                                            id="plam58">
                     <af:outputText value="#{bindings.WarrantyStartDate.inputValue}"
@@ -4694,7 +4695,7 @@
                 <f:facet name="legend"/>
                 <f:facet name="info"/>
                 <af:panelFormLayout id="pfl2"
-                                    inlineStyle="background-color:rgb(234,249,255); border-color:rgb(181,181,181); border-style:solid; border-width:thin; width:400px; height:180px;">
+                                    inlineStyle="background-color:rgb(234,249,255); border-color:rgb(181,181,181); border-style:solid; border-width:thin; width:400px; height:195.0px;">
                   <af:inputText value="#{bindings.OrgId.inputValue}"
                                 label="Operating Unit:"
                                 required="#{bindings.OrgId.hints.mandatory}"
@@ -5023,7 +5024,7 @@
                 <f:facet name="legend"/>
                 <f:facet name="info"/>
                 <af:panelFormLayout id="pfl8"
-                                    inlineStyle="background-color:rgb(234,249,255); border-color:rgb(181,181,181); border-style:solid; border-width:thin; width:685px; height:180px;">
+                                    inlineStyle="background-color:rgb(234,249,255); border-color:rgb(181,181,181); border-style:solid; border-width:thin; width:685px; height:195.0px;">
                   <af:panelLabelAndMessage label="Operating Unit:"
                                            id="plam74">
                     <af:outputText value="#{bindings.OrgId.inputValue}"
@@ -5209,7 +5210,7 @@
                 <f:facet name="legend"/>
                 <f:facet name="info"/>
                 <af:panelFormLayout id="pfl3" maxColumns="3"
-                                    inlineStyle="background-color:rgb(234,249,255); border-color:rgb(181,181,181); border-style:solid; border-width:thin; width:400.0px; height:180.0px;"
+                                    inlineStyle="background-color:rgb(234,249,255); border-color:rgb(181,181,181); border-style:solid; border-width:thin; width:400px; height:195.0px;"
                                     rows="12">
                   <af:panelLabelAndMessage label="Operating Unit:" id="plam39"
                                            inlineStyle="font-weight:bold;"
@@ -5431,7 +5432,7 @@
                 <f:facet name="legend"/>
                 <f:facet name="info"/>
                 <af:panelFormLayout id="pfl11"
-                                    inlineStyle="background-color:rgb(234,249,255); border-color:rgb(181,181,181); border-style:solid; border-width:thin; width:685px; height:180.0px;">
+                                    inlineStyle="background-color:rgb(234,249,255); border-color:rgb(181,181,181); border-style:solid; border-width:thin; width:685px; height:195.0px;">
                   <af:panelLabelAndMessage label="Operating Unit:"
                                            id="plam89">
                     <af:outputText value="#{bindings.OrgId1.inputValue}"

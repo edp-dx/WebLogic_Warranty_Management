@@ -298,6 +298,9 @@
                   AND MnjWarrantyManagementLineEO.ORG_ID = 342) --50821 --> GFL
               OR (    ( :P_Resp_Id = '50822')
                   AND MnjWarrantyManagementLineEO.ORG_ID = 344) --50822 --> GWL
+                  OR ( ( :P_Resp_Id = '50819') AND MnjWarrantyManagementLineEO.ORG_ID = 340) --50819 --> CAL
+         OR ( ( :P_Resp_Id = '50820') AND MnjWarrantyManagementLineEO.ORG_ID = 341) --50820 --> CGL
+         OR ( ( :P_Resp_Id = '50823') AND MnjWarrantyManagementLineEO.ORG_ID = 343) --50823 --> CWPL
               OR (    ( :P_Resp_Id = '20634')
                   AND MnjWarrantyManagementLineEO.ORG_ID IN (340,
                                                              341,
