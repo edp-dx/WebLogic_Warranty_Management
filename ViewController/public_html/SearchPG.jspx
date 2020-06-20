@@ -194,7 +194,7 @@
           <af:showDetailItem text="Warranty Enabled" id="sdi2" visible="false"/>
         </af:panelTabbed>
         <af:panelTabbed id="pt2" styleClass="AFStretchWidth"
-                        inlineStyle="height:1200px;">
+                        inlineStyle="height:750px;">
           <af:showDetailItem text="Warranty Enabled" id="sdi3"
                              icon="/icons/ok_new.png">
             <af:panelGroupLayout id="panelGroupLayout1" layout="horizontal"
@@ -214,7 +214,7 @@
                              inlineStyle="font-size:15px; color:Black; font-weight:bold;"/>
             </af:panelGroupLayout>
             <af:panelCollection id="pc2" styleClass="AFStretchWidth"
-                                inlineStyle="height:600px;">
+                                inlineStyle="height:300px;">
               <f:facet name="menus"/>
               <f:facet name="toolbar">
                 <af:toolbar id="t4">
@@ -1381,7 +1381,7 @@
               <f:facet name="legend"/>
               <f:facet name="info"/>
               <af:panelCollection id="pc4" styleClass="AFStretchWidth"
-                                  visible="true" inlineStyle="height:450px;">
+                                  visible="true" inlineStyle="height:300px;">
                 <f:facet name="menus"/>
                 <f:facet name="toolbar">
                   <af:toolbar id="t10">
@@ -3688,7 +3688,7 @@
             </af:panelHeader>
             <af:spacer width="30" height="5" id="spacer16"/>
             <af:panelCollection id="pc3"
-                                inlineStyle="width:1220px; height:500px;">
+                                inlineStyle="width:1220px; height:400px;">
               <f:facet name="menus"/>
               <f:facet name="toolbar">
                 <af:toolbar id="t6" inlineStyle="width:400px;">
@@ -3757,7 +3757,8 @@
                   </af:inputText>
                 </af:column>
                 <af:column sortProperty="Qty" filterable="true" sortable="true"
-                           headerText="Qty" id="c112" width="25" align="center">
+                           headerText="Qty" id="c112" width="25" align="center"
+                           visible="false">
                   <af:inputText value="#{row.bindings.Qty.inputValue}"
                                 label="#{bindings.MnjWarrantyDataLoaderVO1.hints.Qty.label}"
                                 required="#{bindings.MnjWarrantyDataLoaderVO1.hints.Qty.mandatory}"
@@ -3924,7 +3925,8 @@
                 </af:column>
                 <af:column headerText="Fixed Asset Tag "
                            id="c76" width="200" align="center" sortable="true"
-                           filterable="true" sortProperty="FixedAssetTagId">
+                           filterable="true" sortProperty="FixedAssetTagId"
+                           visible="false">
                   <af:inputListOfValues id="fixedAssetTagIdId"
                                         popupTitle="Search and Select: #{bindings.MnjWarrantyDataLoaderVO1.hints.FixedAssetTagId.label}"
                                         value="#{row.bindings.FixedAssetTagId.inputValue}"
@@ -4031,7 +4033,7 @@
                 </af:column>
                 <af:column headerText="Cost Center" id="c429" align="center"
                            sortable="true" filterable="true"
-                           sortProperty="CostCenter">
+                           sortProperty="CostCenter" visible="false">
                   <af:outputText value="#{row.CostCenter}" id="ot406"
                                  partialTriggers="costCenterNameId">
                     <af:convertNumber groupingUsed="false"
