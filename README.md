@@ -6,7 +6,7 @@ Description: This is a medium-scale Java Web Application where user can manage w
 • Framework: Oracle ADF, Oracle OAF 
 • Frontend: JSF, HTML, CSS, Ajax 
 • Backend: JSP, XML, Servlet 
-• APIs: JDBC 
+• APIs: JDBC Driver 
 • Reports Building Framework: Jasper Reports 
 • Reports Designer: i-Reports 
 • Database: Oracle 12c 
