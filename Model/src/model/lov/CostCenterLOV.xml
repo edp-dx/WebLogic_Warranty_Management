@@ -79,21 +79,10 @@
                                           POSE.ORGANIZATION_ID_CHILD)
                      END)
                      COMPANY,
-         --         PAPF.ORIGINAL_DATE_OF_HIRE JOIN_DATE,
-         --         PAPF.DATE_OF_BIRTH DATE_OF_BIRTH,
-         --         ppf.payroll_name payroll,
-         --         TO_NUMBER (PAPF.EMPLOYEE_NUMBER) EMPLOYEE_NUMBER,
-         --         PAPF.FULL_NAME employee_name,
-         --         (SELECT DISTINCT PPT.SEGMENT1 || '-' || PPT.SEGMENT2
-         --            FROM per_all_positions pep, PER_POSITION_DEFINITIONS PPT
-         --           WHERE     pep.POSITION_DEFINITION_ID = PPT.POSITION_DEFINITION_ID
-         --                 AND PEP.POSITION_ID = PAAF.POSITION_ID
-         --                 AND PPT.ENABLED_FLAG = 'Y')
-         --            DESIGNATION,
          
          PCAL.SEGMENT3 COST_CENTER,
          FV.DESCRIPTION COST_CENTER_NAME
-         --haou.name department
+
     FROM per_all_people_f papf,
          per_all_assignments_f paaf,
          hr_all_organization_units haou,
